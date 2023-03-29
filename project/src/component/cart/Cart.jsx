@@ -1,12 +1,12 @@
 import React from 'react'
-import logo from "../images/StyleHub.png"
+// import logo from "./images/StyleHub.png"
 
 export const Cart = () => {
   return (
     <div>
         <div className="nav">
             <div className="logo">
-                <img src={logo} alt="logo" />
+                {/* <img src={logo} alt="logo" /> */}
             </div>
 
         </div>
