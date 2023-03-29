@@ -1,11 +1,15 @@
-import logo from './logo.svg';
+ 
 import './App.css';
 import { Cart } from './component/cart/Cart';
+import Nav from './component/Nav';
+import ProductPage from './component/ProductPage/ProductPage';
 
 function App() {
   return (
     <div className="App">
-     <Cart/>
+     {/* <Cart/> */}
+     <Nav />
+     <ProductPage />
     </div>
   );
 }
