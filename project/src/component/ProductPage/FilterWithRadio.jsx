@@ -3,8 +3,8 @@ import React from "react";
 
 const FilterWithRadio = ({children}) => {
   return (
-    <Text  as="b">
-      <label> <input type="radio" />  {children}</label>
+    <Text  as="b" >
+      <label  >  <input style={{border:'1px solid black'}} type="radio"   />&nbsp;{children}</label>
       
     </Text>
   );
