@@ -365,7 +365,7 @@ const ProductPage = () => {
           <Stack
             className="right-side-menu"
             border={"1px solid black"}
-            w="85rem"
+            w="85rem
             // minW={'75rem'}
           >
             {/* <Stack w={"20%"} textAlign="right" placeItems={'right'} placeContent='right' */}
