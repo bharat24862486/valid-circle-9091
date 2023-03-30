@@ -1,16 +1,20 @@
 import React from 'react'
 import Carousel from 'nuka-carousel' 
-import { Stack } from '@chakra-ui/react'
-
+ 
 export const CarouselPage = ({arr}) => {
 
 
+  const img1 = arr[0]['img1'];
+  const img2 = arr[1]['img2'];
+  const img3 = arr[2]['img3'];
+  const img4 = arr[3]['img4'];
 
+// console.log('arrCC',img1, img2 , img3, img4);
 
 
   return (
      
-   <Carousel autoplay={true} wrapAround={true} style={{width:'350px', height:"250px", margin:'auto'}}   pauseOnHover={false} defaultControlsConfig={{
+   <Carousel autoplay={true} wrapAround={true} style={{width:'200px', height:"300px", margin:'auto'}}   pauseOnHover={false} defaultControlsConfig={{
        nextButtonText: 'Custom Next',
     prevButtonText: 'Custom Prev',
     nextButtonStyle:{display:'none'},
@@ -22,11 +26,12 @@ export const CarouselPage = ({arr}) => {
     }
   }}  >
  
-    {/* <Stack height={'17.5rem'}>
-
-  {arr.map((e,i)=> <img key={i} src={e} />)}
-    </Stack> */}
-
+     
+   <img w='100%' src={img1} alt='img1' />
+   <img w='100%' src={img2} alt='img2' />
+   <img w='100%' src={img3} alt='img3' />
+   <img w='100%' src={img4} alt='img4' />
+    
 
 
 </Carousel>

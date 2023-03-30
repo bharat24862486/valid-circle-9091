@@ -4,38 +4,142 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   Button,
+  Center,
   HStack,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
-  SimpleGrid,
   Stack,
   Text,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import FilterByCat from "./FilterByCat";
 import FilterWithRadio from "./FilterWithRadio";
 
 import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
-import Carousel from "nuka-carousel/lib/carousel";
-import axios from "axios";
+
 import { useEffect } from "react";
+import { CarouselPage } from "./CarouselPage";
+import { getData } from "../../redux/ProductReducer/action";
+import { useDispatch, useSelector } from "react-redux";
 
 const ProductPage = () => {
   const [productData, setProductData] = useState([]);
 
-  const getData = async () => {
-    let res = await axios.get(``);
-    res = await res.json();
-    setProductData(res.data);
+  const dispatch = useDispatch();
+  // const {productsData} = useSelector((store)=>store.ProductReducer)
+
+  const fetchData = async () => {
+    let val = await dispatch(getData());
+
+    setProductData(val);
   };
 
   useEffect(() => {
-    getData();
+    // setProductData(val)
+    fetchData();
   }, []);
 
-  console.log(productData);
+  // console.log('productData', productData)
+
+  // setProductData(productsData)
+  // const list = [
+  //   {
+  //     rating: "4.2",
+  //     count: "2.4k",
+  //     images: [
+  //       {
+  //         img1: "https://images.pexels.com/photos/6580703/pexels-photo-6580703.jpeg?auto=compress&cs=tinysrgb&w=600",
+  //       },
+  //       {
+  //         img2: "https://images.pexels.com/photos/5326951/pexels-photo-5326951.jpeg?auto=compress&cs=tinysrgb&w=600",
+  //       },
+  //       {
+  //         img3: "https://images.pexels.com/photos/5043636/pexels-photo-5043636.jpeg?auto=compress&cs=tinysrgb&w=600",
+  //       },
+  //       {
+  //         img4: "https://images.pexels.com/photos/4321798/pexels-photo-4321798.jpeg?auto=compress&cs=tinysrgb&w=600",
+  //       },
+  //     ],
+  //     img: "https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/15238122/2021/8/24/d60e1f33-1e40-4df1-8378-1837c0e1082a1629785346782BONKIDSBoysMustardYellowPrintedPocketsSlimFitT-shirt1.jpg",
+  //     brand: "BONKIDS",
+  //     title: "Boys Spiderman Printed Slim Fit Pure Cotton T-shirt",
+  //     sizes: ["4-5y", "6-7y", "8-10y"],
+  //     price: "Rs. 481",
+  //     id: 1,
+  //     "product-discountPercentage": "(71% OFF)",
+  //     quantity: 10,
+  //     gender: "boys",
+  //     categories: "t-shirt",
+  //   },
+  //   //    {
+  //   //     "rating": "4.3",
+  //   //     "count": "312",
+  //   //      "images" :[
+  //   //      {"img1" : "https://images.pexels.com/photos/6580703/pexels-photo-6580703.jpeg?auto=compress&cs=tinysrgb&w=600" },
+  //   //      {"img2" : "https://images.pexels.com/photos/5326951/pexels-photo-5326951.jpeg?auto=compress&cs=tinysrgb&w=600" },
+  //   //      {"img3" : "https://images.pexels.com/photos/5043636/pexels-photo-5043636.jpeg?auto=compress&cs=tinysrgb&w=600" },
+  //   //      {"img4" : "https://images.pexels.com/photos/4321798/pexels-photo-4321798.jpeg?auto=compress&cs=tinysrgb&w=600" }
+  //   //  ],
+  //   //     "img": "https:\/\/assets.myntassets.com\/dpr_2,q_60,w_210,c_limit,fl_progressive\/assets\/images\/14180662\/2022\/6\/21\/c85a9ea3-b4dd-4887-8f40-dbbe9ea4a7301655787166633KUCHIPOOBoysPackof5PrintedT-Shirts1.jpg",
+  //   //     "brand": "KUCHIPOO",
+  //   //     "title": "Boys 5 Pcs Printed T-Shirts",
+  //   //     "sizes": [
+  //   //      "4-5y", "6-7y" , "8-10y"
+  //   //     ],
+  //   //     "price": "Rs. 899",
+  //   //     "id": 2,
+  //   //     "product-discountPercentage": "(Rs. 1000 OFF)",
+  //   //     "quantity" : 10,
+  //   //     "gender": "boys",
+  //   //     "categories": "t-shirt"
+  //   //    },
+  //   //    {
+  //   //     "rating": "4.1",
+  //   //     "count": "957",
+  //   //      "images" :[
+  //   //      {"img1" : "https://images.pexels.com/photos/6580703/pexels-photo-6580703.jpeg?auto=compress&cs=tinysrgb&w=600" },
+  //   //      {"img2" : "https://images.pexels.com/photos/5326951/pexels-photo-5326951.jpeg?auto=compress&cs=tinysrgb&w=600" },
+  //   //      {"img3" : "https://images.pexels.com/photos/5043636/pexels-photo-5043636.jpeg?auto=compress&cs=tinysrgb&w=600" },
+  //   //      {"img4" : "https://images.pexels.com/photos/4321798/pexels-photo-4321798.jpeg?auto=compress&cs=tinysrgb&w=600" }
+  //   //  ],
+  //   //     "img": "https:\/\/assets.myntassets.com\/dpr_2,q_60,w_210,c_limit,fl_progressive\/assets\/images\/17137560\/2022\/2\/11\/4dd42ff2-7468-4bcc-a4a2-f0994b2d01751644582207769HellcatBoysRoundNeckBlendedCottonTshirt-ComboPackof51.jpg",
+  //   //     "brand": "HELLCAT",
+  //   //     "title": "Boys Pack of 5 T-shirt",
+  //   //     "sizes": [
+  //   //      "4-5y", "6-7y" , "8-10y"
+  //   //     ],   "price": "Rs. 749",
+  //   //     "id": 3,
+  //   //     "product-discountPercentage": "(85% OFF)",
+  //   //     "quantity" : 10,
+  //   //     "gender": "boys",
+  //   //     "categories": "t-shirt"
+  //   //    },
+  //   //    {
+  //   //     "rating": "4.6",
+  //   //     "count": "700",
+  //   //      "images" :[
+  //   //      {"img1" : "https://images.pexels.com/photos/6580703/pexels-photo-6580703.jpeg?auto=compress&cs=tinysrgb&w=600" },
+  //   //      {"img2" : "https://images.pexels.com/photos/5326951/pexels-photo-5326951.jpeg?auto=compress&cs=tinysrgb&w=600" },
+  //   //      {"img3" : "https://images.pexels.com/photos/5043636/pexels-photo-5043636.jpeg?auto=compress&cs=tinysrgb&w=600" },
+  //   //      {"img4" : "https://images.pexels.com/photos/4321798/pexels-photo-4321798.jpeg?auto=compress&cs=tinysrgb&w=600" }
+  //   //  ],
+  //   //     "img": "https:\/\/assets.myntassets.com\/dpr_2,q_60,w_210,c_limit,fl_progressive\/assets\/images\/20437414\/2022\/10\/17\/c0441c0f-c014-4f05-a4ba-bc0e5086a5991666030710743MickeyFriendsPrintedOfficialMerchandiseBoysTshirt1.jpg",
+  //   //     "brand": "max",
+  //   //     "title": "Boys Pack Of 5 T-shirts",
+  //   //     "sizes": [
+  //   //      "4-5y", "6-7y" , "8-10y"
+  //   //     ],   "price": "Rs. 664",
+  //   //     "id": 4,
+  //   //     "product-discountPercentage": "(30% OFF)",
+  //   //     "quantity" : 10,
+  //   //     "gender": "boys",
+  //   //     "categories": "t-shirt"
+  //   //    },
+  // ];
 
   const categaries = [
     "Tshirts",
@@ -145,15 +249,18 @@ const ProductPage = () => {
         >
           <Stack
             className="left-side-menu"
-            // width={"18%"}
-            width={"16rem"}
-            minW={"15rem"}
+            // width={"14%"}
+            width={"15rem"}
+            // minW={"15rem"}
             minChildWidth="7.5rem"
           >
             <Stack
+              width={"15rem"}
+              //  minW={"15rem"}
               direction={"row"}
               justifyContent="space-between"
               placeItems={"center"}
+              p={"10px 0"}
             >
               <Text
                 minWidth={"min-content"}
@@ -257,8 +364,9 @@ const ProductPage = () => {
 
           <Stack
             className="right-side-menu"
-            //  border={"1px solid black"}
-            w="79%"
+            border={"1px solid black"}
+            w="85rem"
+            // minW={'75rem'}
           >
             {/* <Stack w={"20%"} textAlign="right" placeItems={'right'} placeContent='right' */}
             <Stack w="100%" p={"0 18px"} alignItems={"flex-end"}>
@@ -273,7 +381,7 @@ const ProductPage = () => {
                     as={Button}
                     // outline="none"
                     // box-shadow="none"
-                    _focusVisible={'none'}
+                    _focusVisible={"none"}
                     w={"100%"}
                     rightIcon={<ChevronDownIcon />}
                     aria-label="Courses"
@@ -298,39 +406,80 @@ const ProductPage = () => {
                 </Menu>
               </Stack>
             </Stack>
-            <Stack
-              className="product-display"
-              // border={"1px solid black"}
-            >
-              <SimpleGrid
-                columns={[2, 3, 4, 5, 6]}
-                minChildWidth="190px"
-                spacing="40px"
-                padding={"5"}
-              >
-                {/* products.map((e)=> <Carousel  />) */}
 
-                <Box bg="tomato" height="350px"></Box>
-                <Box bg="tomato" height="350px"></Box>
-                <Box bg="tomato" height="350px"></Box>
-                <Box bg="tomato" height="350px"></Box>
-                <Box bg="tomato" height="350px"></Box>
-                <Box bg="tomato" height="350px"></Box>
-                <Box bg="tomato" height="350px"></Box>
-                <Box bg="tomato" height="350px"></Box>
-                <Box bg="tomato" height="350px"></Box>
-                <Box bg="tomato" height="350px"></Box>
-                <Box bg="tomato" height="350px"></Box>
-                <Box bg="tomato" height="350px"></Box>
-                <Box bg="tomato" height="350px"></Box>
-                <Box bg="tomato" height="350px"></Box>
-                <Box bg="tomato" height="350px"></Box>
-                <Box bg="tomato" height="350px"></Box>
-                <Box bg="tomato" height="350px"></Box>
-                <Box bg="tomato" height="350px"></Box>
-                <Box bg="tomato" height="350px"></Box>
-                <Box bg="tomato" height="350px"></Box>
-              </SimpleGrid>
+            <Stack className="product-display">
+              <Stack border="1px solid black" p={"15px 5px"}>
+                <Wrap spacing="50px" justify="center">
+                  {/* 
+                  { false && productData.map((e) => (
+                    <WrapItem>
+                      <Center
+                        w="240px"
+                        h="80px"
+                        p={"150px 0"}
+                        bg="rgb(244, 255, 249)"
+                      >
+                        <CarouselPage key={e.id} arr={e.images} />
+                      </Center>
+                    </WrapItem>
+                  ))} */}
+
+                  {productData.length > 0 &&
+                    productData?.map((e) => (
+                      <WrapItem key={e.id}>
+                        <Center
+                          w="240px"
+                          h="80px"
+                          p={"150px 0"}
+                          bg="rgb(244, 255, 249)"
+                        >
+                          <Box as="div">
+                            <Box className="displayCarousel">
+                              <CarouselPage key={e.id} arr={e.images} />
+                            </Box>
+                            <Box className="displayImg" as={"div"}>
+                              {/* <img src={e.img} alt="images" /> */}
+                            </Box>
+                            {/* <Box as="div">
+                            <div class="product-productMetaInfo">
+                              <Text
+                                fontSize={"lg"}
+                                as="b"
+                                class="product-brand"
+                              >
+                                {e.brand}
+                              </Text>
+                              <Text fontSize={"xs"} class="product-product">
+                                {e.title}
+                              </Text>
+                              <Text class="product-sizes">
+                                {" "}
+                                <span class="product-sizeInventoryPresent">
+                                  13-14Y
+                                </span>
+                              </Text>
+                              <div fontSize={"sm"} as="b" class="product-price">
+                                <span>
+                                  <span class="product-discountedPrice">
+                                    {e.price}
+                                  </span>
+                                </span>
+                                <span class="product-discountPercentage">
+                                  {e["product-discountPercentage"]}
+                                </span>
+                              </div>
+                            </div>
+                          </Box> */}
+                          </Box>
+                        </Center>
+                      </WrapItem>
+                    ))}
+                </Wrap>
+
+                {/* {productData.map((e) => (
+                  <CarouselPage key={e.id} arr={e.images} />
+                ))} */}
+              </Stack>
             </Stack>
           </Stack>
         </Stack>

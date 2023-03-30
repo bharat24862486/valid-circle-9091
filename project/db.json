@@ -876,8 +876,7 @@
      "quantity" : 10,
      "gender": "boys",
      "categories": "sweat-shirt"
-    },
-    null,
+    }, 
     {
      "rating": 4.4,
      "count": 114,
@@ -1349,8 +1348,7 @@
      "quantity" : 10,
      "gender": "girls",
      "categories": "dresses"
-    },
-    null,
+    }, 
     {
      "rating": 4.4,
      "count": 5,
