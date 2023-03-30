@@ -24,28 +24,25 @@ import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
 import { useEffect } from "react";
 import { CarouselPage } from "./CarouselPage";
 import { getData } from "../../redux/ProductReducer/action";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux"; 
 
 const ProductPage = () => {
   const [productData, setProductData] = useState([]);
 
   const dispatch = useDispatch();
-  // const {productsData} = useSelector((store)=>store.ProductReducer)
-
-  const fetchData = async () => {
-    let val = await dispatch(getData());
-
-    setProductData(val);
-  };
+  const {productsData} = useSelector((store)=>store.ProductReducer)
+ 
 
   useEffect(() => {
-    // setProductData(val)
-    fetchData();
-  }, []);
+      
+      dispatch(getData())
+  }, [dispatch]);
 
-  // console.log('productData', productData)
-
-  // setProductData(productsData)
+  useEffect(() => {
+    setProductData(productsData);
+  }, [productsData])
+  
+ 
   // const list = [
   //   {
   //     rating: "4.2",
@@ -377,7 +374,6 @@ const ProductPage = () => {
                 boxShadow=" rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;"
               >
                 <Menu isOpen={isOpenMenu}>
-                  
                   <MenuButton
                     as={Button}
                     // outline="none"
