@@ -11,15 +11,32 @@ import {
   MenuList,
   SimpleGrid,
   Stack,
-  Text, 
+  Text,
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import FilterByCat from "./FilterByCat";
 import FilterWithRadio from "./FilterWithRadio";
 
 import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
+import Carousel from "nuka-carousel/lib/carousel";
+import axios from "axios";
+import { useEffect } from "react";
 
 const ProductPage = () => {
+  const [productData, setProductData] = useState([]);
+
+  const getData = async () => {
+    let res = await axios.get(``);
+    res = await res.json();
+    setProductData(res.data);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  console.log(productData);
+
   const categaries = [
     "Tshirts",
     "Dresses",
@@ -61,7 +78,7 @@ const ProductPage = () => {
   ];
 
   const deliveryTime = ["Within 2 Days", "Within 3 Days", "Within 4 Days"];
- 
+
   const timerRef = useRef();
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
@@ -88,8 +105,10 @@ const ProductPage = () => {
   return (
     <>
       <Stack p={"1.50rem"}>
-        <Stack spacing={2} align="stretch" 
-        // border={"1px solid black"}
+        <Stack
+          spacing={2}
+          align="stretch"
+          // border={"1px solid black"}
         >
           <Breadcrumb>
             <BreadcrumbItem>
@@ -126,11 +145,10 @@ const ProductPage = () => {
         >
           <Stack
             className="left-side-menu"
-            width={"18%"}
-            // minW={'15%'}
-            // maxW={'18%'}
-            // border={"1px solid black"}
-            minChildWidth="120px"
+            // width={"18%"}
+            width={"16rem"}
+            minW={"15rem"}
+            minChildWidth="7.5rem"
           >
             <Stack
               direction={"row"}
@@ -159,7 +177,7 @@ const ProductPage = () => {
               direction={"column"}
               textAlign="left"
               border="1px solid #e9e9ed"
-              padding={"10px 0"}
+              padding={".625rem .625rem"}
             >
               <FilterWithRadio children={"Boys"} />
               <FilterWithRadio children={"Girls"} />
@@ -168,7 +186,7 @@ const ProductPage = () => {
               direction={"column"}
               textAlign="left"
               border="1px solid #e9e9ed"
-              padding={"10px 10px"}
+              padding={".625rem .625rem"}
             >
               <HStack direction={"row"} justifyContent={"space-between"}>
                 <Text as={"b"}> CATEGORIES </Text>
@@ -182,7 +200,7 @@ const ProductPage = () => {
               direction={"column"}
               textAlign="left"
               border="1px solid #e9e9ed"
-              padding={"10px 10px"}
+              padding={".625rem .625rem"}
             >
               <HStack direction={"row"} justifyContent={"space-between"}>
                 <Text as={"b"}> BRAND </Text>
@@ -196,7 +214,7 @@ const ProductPage = () => {
               direction={"column"}
               textAlign="left"
               border="1px solid #e9e9ed"
-              padding={"10px 10px"}
+              padding={".625rem .625rem"}
             >
               <HStack direction={"row"} justifyContent={"space-between"}>
                 <Text as={"b"}> price </Text>
@@ -209,7 +227,7 @@ const ProductPage = () => {
               direction={"column"}
               textAlign="left"
               border="1px solid #e9e9ed"
-              padding={"10px 10px"}
+              padding={".625rem .625rem"}
             >
               <HStack direction={"row"} justifyContent={"space-between"}>
                 <Text as={"b"}> DISCOUNT RANGE </Text>
@@ -222,7 +240,7 @@ const ProductPage = () => {
               direction={"column"}
               textAlign="left"
               border="1px solid #e9e9ed"
-              padding={"10px 10px"}
+              padding={".625rem .625rem"}
             >
               <HStack direction={"row"} justifyContent={"space-between"}>
                 <Text as={"b"}> DELIVERY TIME </Text>
@@ -230,51 +248,59 @@ const ProductPage = () => {
               {deliveryTime.map((e, i) => (
                 <FilterByCat key={i} children={e} />
               ))}
-            <Text color={' #a39c9c'} fontSize={'.8rem'} as={"i"}>
-              Estimated fastest delivery time. Refer to actual delivery time in
-              Bag.
-            </Text>
+              <Text color={" #a39c9c"} fontSize={".8rem"} as={"i"}>
+                Estimated fastest delivery time. Refer to actual delivery time
+                in Bag.
+              </Text>
             </Stack>
-
           </Stack>
 
-          <Stack className="right-side-menu"
-          //  border={"1px solid black"}
-            w="79%">
-            <Stack w={"20%"} textAlign="right" placeItems={'right'} placeContent='right'
+          <Stack
+            className="right-side-menu"
             //  border={"1px solid black"}
-            borderRadius={'12'}
-             boxShadow=' rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;'
-             >
-              <Menu isOpen={isOpenMenu}>
-                <MenuButton
-                  as={Button}
-                  outline="none"
-                  box-shadow="none"
-                  rightIcon={<ChevronDownIcon />}
-                  aria-label="Courses"
-                  fontWeight="normal"
-                  onMouseEnter={btnMouseEnterEvent}
-                  onMouseLeave={btnMouseLeaveEvent}
-                >
-                  Sort by : <Text as={"b"}>Recommended</Text>
-                </MenuButton>
-                <MenuList
-                  onMouseEnter={menuListMouseEnterEvent}
-                  onMouseLeave={menuListMouseLeaveEvent}
-                >
-                  <MenuItem>Recommended</MenuItem>
-                  <MenuItem>What's New</MenuItem>
-                  <MenuItem>Popularity</MenuItem>
-                  <MenuItem>Price: Low to High</MenuItem>
-                  <MenuItem>Price: High to Low</MenuItem>
-                  <MenuItem>Customer Rating</MenuItem>
-                </MenuList>
-              </Menu>
+            w="79%"
+          >
+            {/* <Stack w={"20%"} textAlign="right" placeItems={'right'} placeContent='right' */}
+            <Stack w="100%" p={"0 18px"} alignItems={"flex-end"}>
+              <Stack
+                w={"16rem"}
+                //  border={"1px solid black"}
+                borderRadius={"12"}
+                boxShadow=" rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;"
+              >
+                <Menu isOpen={isOpenMenu}>
+                  <MenuButton
+                    as={Button}
+                    // outline="none"
+                    // box-shadow="none"
+                    _focusVisible={'none'}
+                    w={"100%"}
+                    rightIcon={<ChevronDownIcon />}
+                    aria-label="Courses"
+                    fontWeight="normal"
+                    onMouseEnter={btnMouseEnterEvent}
+                    onMouseLeave={btnMouseLeaveEvent}
+                  >
+                    Sort by : <Text as={"b"}>Recommended</Text>
+                  </MenuButton>
+                  <MenuList
+                    w={"115%"}
+                    onMouseEnter={menuListMouseEnterEvent}
+                    onMouseLeave={menuListMouseLeaveEvent}
+                  >
+                    <MenuItem>Recommended</MenuItem>
+                    <MenuItem>What's New</MenuItem>
+                    <MenuItem>Popularity</MenuItem>
+                    <MenuItem>Price: Low to High</MenuItem>
+                    <MenuItem>Price: High to Low</MenuItem>
+                    <MenuItem>Customer Rating</MenuItem>
+                  </MenuList>
+                </Menu>
+              </Stack>
             </Stack>
-
-            <Stack className="product-display" 
-            // border={"1px solid black"}
+            <Stack
+              className="product-display"
+              // border={"1px solid black"}
             >
               <SimpleGrid
                 columns={[2, 3, 4, 5, 6]}
@@ -282,6 +308,8 @@ const ProductPage = () => {
                 spacing="40px"
                 padding={"5"}
               >
+                {/* products.map((e)=> <Carousel  />) */}
+
                 <Box bg="tomato" height="350px"></Box>
                 <Box bg="tomato" height="350px"></Box>
                 <Box bg="tomato" height="350px"></Box>

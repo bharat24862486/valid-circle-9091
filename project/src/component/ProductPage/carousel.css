@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .carousel {
+    padding: 10px 10px 0;
+    border-radius: 4px;
+    width: 375px;
+    /* height: 500px; */
+    margin: auto;
+  }
+  .carousel__main {
+    border-radius: 4px;
+    height: 500px;
+  }
+  
+  .demo-item {
+    /* height: 300px; */
+  }
+  

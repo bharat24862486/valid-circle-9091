@@ -1,15 +1,16 @@
- 
-import './App.css';
-import { Cart } from './component/cart/Cart';
-import Nav from './component/Nav';
-import ProductPage from './component/ProductPage/ProductPage';
+import "./App.css"; 
+import Nav from "./component/Nav"; 
+import ProductPage from "./component/ProductPage/ProductPage";
 
 function App() {
+ 
+
   return (
-    <div className="App">
-     {/* <Cart/> */}
-     <Nav />
+    <div className="App"> 
+      <Nav />
      <ProductPage />
+     
+      
     </div>
   );
 }
