@@ -249,9 +249,12 @@ const ProductPage = () => {
         >
           <Stack
             className="left-side-menu"
+ 
             // width={"14%"}
             width={"15rem"}
             // minW={"15rem"}
+ 
+  
             minChildWidth="7.5rem"
           >
             <Stack
@@ -284,7 +287,9 @@ const ProductPage = () => {
               direction={"column"}
               textAlign="left"
               border="1px solid #e9e9ed"
+ 
               padding={".625rem .625rem"}
+ 
             >
               <FilterWithRadio children={"Boys"} />
               <FilterWithRadio children={"Girls"} />
@@ -361,6 +366,7 @@ const ProductPage = () => {
               </Text>
             </Stack>
           </Stack>
+
 
           <Stack
             className="right-side-menu"
@@ -480,6 +486,7 @@ const ProductPage = () => {
                   <CarouselPage key={e.id} arr={e.images} />
                 ))} */}
               </Stack>
+
             </Stack>
           </Stack>
         </Stack>
