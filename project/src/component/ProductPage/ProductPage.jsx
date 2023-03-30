@@ -126,11 +126,11 @@ const ProductPage = () => {
         >
           <Stack
             className="left-side-menu"
-            width={"18%"}
-            // minW={'15%'}
+            width={"16rem"}
+            minW={'15rem'}
             // maxW={'18%'}
             // border={"1px solid black"}
-            minChildWidth="120px"
+            minChildWidth="7.5rem"
           >
             <Stack
               direction={"row"}
@@ -159,7 +159,7 @@ const ProductPage = () => {
               direction={"column"}
               textAlign="left"
               border="1px solid #e9e9ed"
-              padding={"10px 0"}
+              padding={"10px 10px"}
             >
               <FilterWithRadio children={"Boys"} />
               <FilterWithRadio children={"Girls"} />
@@ -240,17 +240,19 @@ const ProductPage = () => {
 
           <Stack className="right-side-menu"
           //  border={"1px solid black"}
-            w="79%">
-            <Stack w={"20%"} textAlign="right" placeItems={'right'} placeContent='right'
-            //  border={"1px solid black"}
+          w="79%">
+            <Stack w="100%" p={'0 18px'} alignItems={"flex-end"} >
+
+            <Stack w={'16rem'} 
             borderRadius={'12'}
              boxShadow=' rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;'
              >
-              <Menu isOpen={isOpenMenu}>
+              <Menu isOpen={isOpenMenu} >
                 <MenuButton
                   as={Button}
-                  outline="none"
-                  box-shadow="none"
+                  // border={"1px solid red"}
+                  w={'100%'}
+                  // _focusVisible={'none'}
                   rightIcon={<ChevronDownIcon />}
                   aria-label="Courses"
                   fontWeight="normal"
@@ -259,7 +261,9 @@ const ProductPage = () => {
                 >
                   Sort by : <Text as={"b"}>Recommended</Text>
                 </MenuButton>
-                <MenuList
+                <MenuList 
+                w={'115%'}
+                
                   onMouseEnter={menuListMouseEnterEvent}
                   onMouseLeave={menuListMouseLeaveEvent}
                 >
@@ -272,7 +276,7 @@ const ProductPage = () => {
                 </MenuList>
               </Menu>
             </Stack>
-
+            </Stack>
             <Stack className="product-display" 
             // border={"1px solid black"}
             >
