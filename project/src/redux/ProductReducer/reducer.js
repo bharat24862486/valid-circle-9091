@@ -4,7 +4,7 @@ import { PRODUCTDATAFAILURE, PRODUCTDATAREQ, PRODUCTDATASUCCESS } from "./action
 const initialState = {
     isLoading: false,
     isError:false,
-    productsData:[]
+    productData:[]
 }
 
 
@@ -15,7 +15,7 @@ export const reducer = (state=initialState , {type,payload}) => {
             return {...state, isLoading:true, isError:false}
         }
         case PRODUCTDATASUCCESS : {
-            return {...state, isLoading:false, isError:false, productsData: payload}
+            return {...state, isLoading:false, isError:false, productData: payload}
         }
         case PRODUCTDATAFAILURE : {
             return {...state, isLoading:false, isError:true}
