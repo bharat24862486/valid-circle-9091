@@ -27,10 +27,14 @@ import { getData } from "../../redux/ProductReducer/action";
 import { useDispatch, useSelector } from "react-redux"; 
 
 const ProductPage = () => {
-  const [productData, setProductData] = useState([]);
+  
+  // const [hoverEffect, setHoverEffect] = useState(false);
+
+
+
 
   const dispatch = useDispatch();
-  const {productsData} = useSelector((store)=>store.ProductReducer)
+  const {productData} = useSelector((store)=>store.ProductReducer)
  
 
   useEffect(() => {
@@ -38,9 +42,6 @@ const ProductPage = () => {
       dispatch(getData())
   }, [dispatch]);
 
-  useEffect(() => {
-    setProductData(productsData);
-  }, [productsData])
   
  
   // const list = [
@@ -249,7 +250,7 @@ const ProductPage = () => {
             // width={"14%"}
             width={"15rem"}
             // minW={"15rem"}
-            minChildWidth="7.5rem"
+            // minChildWidth="7.5rem"
           >
             <Stack
               width={"15rem"}
@@ -378,7 +379,7 @@ const ProductPage = () => {
                     as={Button}
                     // outline="none"
                     // box-shadow="none"
-                    _focusVisible={"none"}
+                    _focusVisible={"none"} 
                     w={"100%"}
                     rightIcon={<ChevronDownIcon />}
                     aria-label="Courses"
@@ -421,7 +422,7 @@ const ProductPage = () => {
                     </WrapItem>
                   ))} */}
 
-                  {productData.length > 0 &&
+                  {productData.length >= 0 &&
                     productData?.map((e) => (
                       <WrapItem key={e.id}>
                         <Center
@@ -432,10 +433,10 @@ const ProductPage = () => {
                         >
                           <Box as="div">
                             <Box className="displayCarousel">
-                              <CarouselPage key={e.id} arr={e.images} />
+                              {/* <CarouselPage key={e.id} arr={e.images} /> */}
                             </Box>
                             <Box className="displayImg" as={"div"}>
-                              {/* <img src={e.img} alt="images" /> */}
+                              <img src={e.img} alt="images" />
                             </Box>
                             {/* <Box as="div">
                             <div class="product-productMetaInfo">
