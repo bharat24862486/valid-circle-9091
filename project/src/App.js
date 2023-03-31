@@ -1,4 +1,5 @@
 import "./App.css";
+import AdminPage from "./component/AdminDataBase/AdminPage";
  import Nav from "./component/Nav";
  import ProductPage from "./component/ProductPage/ProductPage";
 
@@ -14,6 +15,7 @@ function App() {
       {/* <Cart/> */}
       <Nav />
      <ProductPage />
+     {/* <AdminPage /> */}
      
        
     </div>
