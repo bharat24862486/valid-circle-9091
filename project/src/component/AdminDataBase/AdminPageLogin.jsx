@@ -12,28 +12,32 @@ import {
     Button,
     Heading,
     Text,
-    useColorModeValue,
+    useColorModeValue, 
   } from '@chakra-ui/react';
 import { validate } from '../../redux/AdminReducer/action';
  
  
-const AdminPage = () => {
+const AdminPageLogin = () => {
 
   const [userLogin, setUserLogin] = useState({mail:'rahul1905.sk@gmail.com', pass:''})
- 
+  
 
 const handleLogin = (e) => {
   e.preventDefault();
   console.log(userLogin);
   const {mail, pass} = userLogin
   validate(mail, pass)
+   
   setUserLogin({mail:'rahul1905.sk@gmail.com', pass:''})
 
 }
 
-const handleHi = () => {
-  console.log('hiiiii');
-}
+
+
+
+
+
+ 
 
   return (
     
@@ -99,4 +103,4 @@ const handleHi = () => {
   )
 }
 
-export default AdminPage
+export default AdminPageLogin

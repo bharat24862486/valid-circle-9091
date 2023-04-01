@@ -1,9 +1,10 @@
-import axios from "axios";
-
+ import axios from "axios";
+ 
 
 const url = `http://localhost:8080/admin_data`
 
 export const validate = async (mail, pass) => {
+
   let MailId;
   let Pass;
   let promise = await axios.get(url); 
@@ -14,18 +15,20 @@ export const validate = async (mail, pass) => {
   //   Pass = el.Pass;
   // });
 
-  console.log('Def mail-->', mail);
-  console.log('userinp mail-->', MailId);
-  console.log('Def pass-->', pass);
-  console.log('userinp pass-->', Pass);
+  // console.log('Def mail-->', mail);
+  // console.log('userinp mail-->', MailId);
+  // console.log('Def pass-->', pass);
+  // console.log('userinp pass-->', Pass);
  
   let DetailsArrAdmin = [MailId, Pass];
 
   if (mail === MailId) {
     if (pass === Pass) {
       alert("login Sucessfull");
+      // ToastStatus('fd','congrats',0 )
       sessionStorage.setItem("Admin-login", JSON.stringify(DetailsArrAdmin));
-      // textTospeech(" Happy to see you back Rahul")
+      textTospeech(" Happy to see you back Rahul")
+      
       // location.href = "../admin-database/dashboard.html";
     } else {
       alert("Invalid Password");
@@ -34,3 +37,19 @@ export const validate = async (mail, pass) => {
     alert("Invalid Email");
   }
 };
+
+
+
+
+
+
+
+
+
+const voices = window.speechSynthesis.getVoices();
+console.log(voices);
+function textTospeech (text) {
+    let utternance = new SpeechSynthesisUtterance(text);
+    utternance.voice = window.speechSynthesis.getVoices()[3] ;
+    speechSynthesis.speak(utternance);
+}
