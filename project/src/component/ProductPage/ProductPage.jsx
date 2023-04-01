@@ -123,7 +123,7 @@ const ProductPage = () => {
             </BreadcrumbItem>
 
             <BreadcrumbItem isCurrentPage>
-              <BreadcrumbLink as={"b"} cursor='text' >sandeep Wear Online Store</BreadcrumbLink>
+              <BreadcrumbLink as={"b"} cursor='text' >Kids Wear Online Store</BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
 
