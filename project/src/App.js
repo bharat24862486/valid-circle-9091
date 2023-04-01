@@ -2,7 +2,7 @@ import "./App.css";
 import AdminPage from "./component/AdminDataBase/AdminPage";
  import Nav from "./component/Nav";
  import ProductPage from "./component/ProductPage/ProductPage";
-
+import {Cartpage} from "./pages/Cartpage";
 function App() {
   // const images = [
   //   "https://images.pexels.com/photos/1193743/pexels-photo-1193743.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -13,8 +13,9 @@ function App() {
   return (
     <div className="App">
       {/* <Cart/> */}
-      <Nav />
-     <ProductPage />
+      {/* <Nav /> */}
+      <Cartpage/>
+     {/* <ProductPage /> */}
      {/* <AdminPage /> */}
      
        
