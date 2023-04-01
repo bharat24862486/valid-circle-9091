@@ -12,7 +12,8 @@ import {
     Button,
     Heading,
     Text,
-    useColorModeValue, 
+    useColorModeValue,
+    useToast, 
   } from '@chakra-ui/react';
 import { validate } from '../../redux/AdminReducer/action';
  
@@ -21,16 +22,68 @@ const AdminPageLogin = () => {
 
   const [userLogin, setUserLogin] = useState({mail:'rahul1905.sk@gmail.com', pass:''})
   
+  const toast = useToast()
+
+  const sucessToast = (title, des) => {
+
+    toast({
+      title: title,
+      description: des, 
+      status: 'success',
+      position: 'top',
+      duration: 3000,
+      isClosable: true,
+    })
+  }
+ 
+  const wrongPassToast = (title, des) => {
+
+    toast({
+      title: title,
+      description: des, 
+      status: 'error',
+      position: 'top',
+      duration: 3000,
+      isClosable: true,
+    })
+  }
+  const defaultPassToast = () => {
+
+    toast({
+      title: `Default Password is 1111`,
+      description: 'You can also reset from forget password', 
+      status: 'info',
+      position: 'top',
+      duration: 3000,
+      isClosable: true,
+    })
+  }
+  const wrongEmailToast = (title, des) => {
+
+    toast({
+      title: title,
+      description: des, 
+      status: 'warning',
+      position: 'top',
+      duration: 3000,
+      isClosable: true,
+    })
+  }
+  
+  
+  
+
 
 const handleLogin = (e) => {
   e.preventDefault();
   console.log(userLogin);
   const {mail, pass} = userLogin
-  validate(mail, pass)
+  validate(mail, pass, sucessToast,wrongEmailToast, wrongPassToast, defaultPassToast)
    
   setUserLogin({mail:'rahul1905.sk@gmail.com', pass:''})
 
 }
+
 
 
 
@@ -68,7 +121,7 @@ const handleLogin = (e) => {
           </FormControl>
           <FormControl id="password" isRequired>
             <FormLabel>Password</FormLabel>
-            <Input type="password" value={userLogin.pass} onChange={(e)=> setUserLogin({...userLogin, pass:e.target.value})}  />
+            <Input type="password" onClick={()=>defaultPassToast()} value={userLogin.pass} onChange={(e)=> setUserLogin({...userLogin, pass:e.target.value})}  />
           </FormControl>
         
           <Stack spacing={10}>
@@ -86,8 +139,7 @@ const handleLogin = (e) => {
               _hover={{
                 bg: 'blue.500',
               }} 
-             
-              >
+               >
               Sign in
             </Button>
           </Stack> 
