@@ -2,8 +2,9 @@ import "./App.css";
 import AdminPageLogin from "./component/AdminDataBase/AdminPageLogin";
 import ResetPasswordForm from "./component/AdminDataBase/ResetPasswordForm";
  import Nav from "./component/Nav";
- import {Cartpage} from "./pages/Cartpage";
+//  import {Cartpage} from "./pages/Cartpage";
  import ProductPage from "./component/ProductPage/ProductPage";
+ import {Cart} from './component/cart/Cart'
  
 
  
@@ -18,13 +19,12 @@ function App() {
   
   return (
     <div className="App">
-      {/* <Cart/> */}
- 
-      <Nav />
-     <ProductPage />
-     {/* <AdminPageLogin /> */}
-     {/* <ResetPasswordForm /> */}
+      {/* <Cart /> */}
   
+     <ProductPage />
+     {/* <AdminPageLogin />
+     <ResetPasswordForm />
+   */}
        
     </div>
   );

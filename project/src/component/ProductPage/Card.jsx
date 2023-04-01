@@ -19,7 +19,7 @@ const Card = ({ props }) => {
     sizes,
     productDiscountPercentage,
   } = props;
-  console.log(props);
+  // console.log(props);
   return (
     <Stack
       height={"380px"}

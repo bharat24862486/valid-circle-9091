@@ -22,6 +22,7 @@ import { useEffect } from "react";
 import { getData } from "../../redux/ProductReducer/action";
 import { useDispatch, useSelector } from "react-redux"; 
 import Card from './Card';
+import Nav from "../Nav";
 
 const ProductPage = () => {
    
@@ -106,6 +107,7 @@ const ProductPage = () => {
 
   return (
     <>
+    <Nav />
       <Stack p={"1.50rem"}>
         <Stack
           spacing={2}
