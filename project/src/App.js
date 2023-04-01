@@ -1,11 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
-import { Cart } from './component/cart/Cart';
+import { Cartpage } from './pages/Cartpage';
 
 function App() {
   return (
     <div className="App">
-     <Cart/>
+     <Cartpage/>
     </div>
   );
 }
