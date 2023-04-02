@@ -1,6 +1,7 @@
 import React from 'react'
 import { PhoneIcon, AddIcon, WarningIcon, SearchIcon } from '@chakra-ui/icons'
 import "../CSS/Nav.css"
+import MobileNav from './NavBar/MobileNav'
 
 
 // import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -15,7 +16,8 @@ const Nav = () => {
   }
   return (
     // <div style={{border:"1px solid black", height:'80px'}}>Nav</div>
-    <div className='NavMain'>
+    <div>
+      {window.screen.width > 1024? <div className='NavMain'>
       <div>
         <img src='https://i.ibb.co/kG5RxHg/StyleHub.png' alt="" style={{ width: "100px" }} />
       </div>
@@ -591,6 +593,7 @@ const Nav = () => {
 
 
       </div>
+    </div> : <MobileNav />}
     </div>
 
   )

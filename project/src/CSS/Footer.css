@@ -42,3 +42,23 @@
 .FooterLastSection{
     margin-top: 4%;
 }
+
+.MediaFooterFlex{
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    font-size: 12px;
+}
+.MediaFooterFlex img{
+    width: 20%;
+    
+}
+.MediaFooterFlex2{
+    display: flex;
+    justify-content: space-around;
+    font-size: 12px;
+}
+.FooterSecondSpace a{
+    margin: 15px;
+    font-size: 12px;
+}

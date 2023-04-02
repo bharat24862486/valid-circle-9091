@@ -62,7 +62,7 @@ const MobileNav = () => {
 
 
       </div> */}
-                <div className='thirdNavMain'>
+                <div className='thirdNavMainMobile'>
                     <div>
                         <img src="https://img.icons8.com/ios/256/gender-neutral-user--v1.png" style={{ width: "25px" }} alt="" />
                         <p>Profile</p>
