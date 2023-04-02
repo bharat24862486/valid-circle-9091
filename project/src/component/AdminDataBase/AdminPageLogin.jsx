@@ -17,8 +17,10 @@ import {
   } from '@chakra-ui/react';
 import { validate } from '../../redux/AdminReducer/action';
  
+
  
 const AdminPageLogin = () => {
+
 
   const [userLogin, setUserLogin] = useState({mail:'rahul1905.sk@gmail.com', pass:''})
   
@@ -94,8 +96,15 @@ const handleLogin = (e) => {
 
   return (
     
-    <Flex
+    <Flex 
+    style={{
+      // backgroundImage: `url(https://i.ibb.co/Pg99n76/admin-Page-bg.jpg)`, backgroundRepeat:'no-repeat',backgroundSize:'cover', 
+     
+    backgroundImage:'linear-gradient(90deg, rgba(255,4,224,0.8) 0%, rgba(255,235,0,0.8) 99%)', backgroundFilter:'brightness(20%)'}}
+    // bgImage = 'url('https://i.ibb.co/Pg99n76/admin-Page-bg.jpg')'
     minH={'100vh'}
+    h='100vh'
+    
     align={'center'}
     justify={'center'}
 
@@ -103,8 +112,8 @@ const handleLogin = (e) => {
     <Stack spacing={8} mx={'auto'} w={'lg'} py={12} px={6}>
        
       <Stack align={'center'} maxW={'xxl'}>
-        <Heading fontSize={'4xl'}>Welcome Back !</Heading>
-        <Text fontSize={'lg'} color={'gray.600'}>
+        <Heading color='white' textShadow='0 0 3px black'  fontSize={'4xl'}>Welcome Back !</Heading>
+        <Text color='white'  textShadow='0 0 3px black' fontSize={'lg'} >
         Log in to your Admin account below  
         </Text>
       </Stack>

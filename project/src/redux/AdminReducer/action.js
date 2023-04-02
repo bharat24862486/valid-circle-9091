@@ -58,28 +58,28 @@ export const validate = async (mail, pass, sucessToast,wrongEmailToast, wrongPas
 export const resetPassFun = async (mail, pass, sucessToast,wrongEmailToast, wrongPassToast) => {
   
   let MailId;
-  let Pass;
+  // let Pass;
   let promise = await axios.get(url); 
    MailId = promise.data[0]['MailId']
-   Pass = promise.data[0]['Pass'] 
+  //  Pass = promise.data[0]['Pass'] 
  
  
   
   if (mail === MailId) {
-    if (pass === Pass) {
+    // if (pass === Pass) {
       const userObj = {
          
         MailId: mail,
         Pass: pass
       }
-      let promise = await axios.post(url, userObj); 
+      let promise = await axios.patch(`${url}/1`, userObj); 
       console.log(promise.data)
       sucessToast('PassWord Changed Sucessfully', 'Please login again' )  
       // sessionStorage.setItem("Admin-login", JSON.stringify(DetailsArrAdmin));
       // textTospeech(" Happy to see you back Rahul")
       
       // location.href = "../admin-database/dashboard.html";
-    }
+    
     //  else {
       
     //   wrongPassToast()

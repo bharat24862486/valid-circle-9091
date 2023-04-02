@@ -4,15 +4,14 @@ import { FaStar } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import { CarouselPage } from "./CarouselPage";
 
-// import StarLogo from '../';
 const Card = ({ props }) => {
   const [isHover, setIsHover] = React.useState(false);
   const {
-    img,
+    image,
     rating,
     images,
     count,
-     
+
     brand,
     title,
     price,
@@ -28,15 +27,23 @@ const Card = ({ props }) => {
       bg="rgb(255, 255, 255)"
       // border={"1px solid red"}
       alignItems="flex-start"
-     boxShadow= 'rgba(149, 157, 165, 0.2) 0px 8px 24px'
+      boxShadow="rgba(149, 157, 165, 0.2) 0px 8px 24px"
       onMouseOver={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
       position="relative"
     >
-      <Box w={"100%"} h="90%" position="relative"  display={!isHover ? "block" :"none"}>
+      <Box
+        w={"100%"}
+        h="90%"
+        position="relative"
+        display={!isHover ? "block" : "none"}
+      >
         <Box
-        //  border="1px solid red" 
-        w={"100%"} h="100%" position="absolute">
+          //  border="1px solid red"
+          w={"100%"}
+          h="100%"
+          position="absolute"
+        >
           <Box
             width="100%"
             height="80%"
@@ -49,7 +56,7 @@ const Card = ({ props }) => {
                 height: "100%",
                 objectFit: "contain",
               }}
-              src={img}
+              src={image}
               alt="productImg"
             />
             <HStack
@@ -85,85 +92,54 @@ const Card = ({ props }) => {
         <CarouselPage arr={images} />
       </Box> */}
 
-<Box w={"100%"} h="90%" bgColor="white" top="0" position="relative" display={isHover ? "block" :"none"}>
+      <Box
+        w={"100%"}
+        h="90%"
+        bgColor="white"
+        top="0"
+        position="relative"
+        display={isHover ? "block" : "none"}
+      >
         <Box
-        //  border="1px solid red" 
-        w={"100%"} h="80%" position="absolute">
+          //  border="1px solid red"
+          w={"100%"}
+          h="80%"
+          position="absolute"
+        >
           <Box
             width="100%"
             height="100%"
             // border="1px solid red"
             position={"relative"}
           >
-             <CarouselPage arr={images} />
-             
+            <CarouselPage obj={images} />
           </Box>
-            <Button borderRadius={"0.05rem"}  _hover={{backgroundColor:"none",borderColor:"black"}} leftIcon={<FiHeart />} size='sm' variant='outline' w='95%' > Wishlist</Button>
+          <Button
+            borderRadius={"0.05rem"}
+            _hover={{ backgroundColor: "none", borderColor: "black" }}
+            leftIcon={<FiHeart />}
+            size="sm"
+            variant="outline"
+            w="95%"
+          >
+            {" "}
+            Wishlist
+          </Button>
           <Stack p="1rem" spacing={0} alignItems={"flex-start"}>
             <Text>Sizes: {sizes[0]}</Text>
           </Stack>
         </Box>
       </Box>
 
-
-
-
-
-
       <Text pl="1rem" as={"b"}>
-        {price} <span style={{fontSize:'.7rem', color:'orange'}} > &nbsp; {  productDiscountPercentage}</span>
+        {price}{" "}
+        <span style={{ fontSize: ".7rem", color: "orange" }}>
+          {" "}
+          &nbsp; {productDiscountPercentage}
+        </span>
       </Text>
     </Stack>
   );
 };
 
 export default Card;
-
-/* 
-
-<img
-            style={{
-              width: "100%",
-              objectFit: "contain",
-              border: "1px solid teal",
-            }}
-            src={img}
-            alt="productImg"
-          />
-
-
-          <Box
-            style={{
-              display: "flex",
-              width: "max-content",
-              border: "1px solid black",
-              height: "15px",
-              position: "absolute",
-              top: "95%",
-            }}
-          >
-            <Box fontSize="12px">{rating}</Box>
-
-            <Box w="20px" h="100%">
-              <img
-                style={{ width: "100%", height: "100%" }}
-                src="https://i.ibb.co/jgwC9xQ/starLogo.png"
-                alt="fff"
-              />
-            </Box>
-            <Box> | {count} </Box>
-          </Box>
-          
-        </Box>
-<Text>{brand}</Text>
-          <Text>{title}</Text>
-        <Box
-            backgroundColor="green"
-            display={!isHover ? "none" : "block"}
-            position="absolute"
-            
-          >
-            {" "}
-            <CarouselPage arr={images} />
-          </Box> 
-      </Box> */

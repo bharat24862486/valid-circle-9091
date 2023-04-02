@@ -1,0 +1,44 @@
+.FooterFlex{
+    display: flex;
+    justify-content: space-around;
+}
+.FooterFlex h1{
+    font-weight: 600;
+}
+.FooterFlex ul li{
+    list-style: none;
+    /* font-weight: 500; */
+    /* display: block;
+    margin: auto; */
+}
+.FooterFlex > div{
+    /* border: 1px solid black; */
+}
+.FooterFlex img{
+    width: 20%;
+}
+.col-span-2{
+    width: 25%;
+}
+.col-span-4{
+    width: 25%;
+    align-items: center;
+}
+.MainFooter{
+    margin: 5%;
+}
+.FooterImageOne{
+    display: flex;
+}
+.FooterImageOne img{
+    width: 40%;
+    margin: 5% 0;
+}
+.FooterSecongImgflex{
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
+}
+.FooterLastSection{
+    margin-top: 4%;
+}
