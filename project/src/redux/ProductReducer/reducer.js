@@ -1,6 +1,6 @@
 import { PRODUCTDATAFAILURE, PRODUCTDATAREQ, PRODUCTDATASUCCESS } from "./actionTypes";
 
-
+//d
 const initialState = {
     isLoading: false,
     isError:false,
