@@ -1,0 +1,15 @@
+.SingleFlex{
+    display: flex;
+}
+.SingleFlex div:nth-child(2){
+    width: 120%;
+    padding: 3%;
+    padding-top: 1%;
+}
+
+@media screen and (max-width:700px) {
+    .SingleFlex{
+        flex-direction: column;
+    }
+    
+}
