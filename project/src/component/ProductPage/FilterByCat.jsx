@@ -1,10 +1,10 @@
-import { Checkbox } from "@chakra-ui/react";
-import React from "react";
+// import { Checkbox } from "@chakra-ui/react";
+// import React from "react";
 
-const FilterByCat = ({ children }) => {
+// const FilterByCat = ({ children }) => {
 
 
-  return (  <Checkbox style={{textTransform: 'capitalize'}} >{children}</Checkbox> );
-};
+//   return (  <Checkbox style={{textTransform: 'capitalize'}} >{children}</Checkbox> );
+// };
 
-export default FilterByCat;
+// export default FilterByCat;
