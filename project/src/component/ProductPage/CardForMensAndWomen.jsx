@@ -56,7 +56,7 @@ const Card = ({ props }) => {
                 height: "100%",
                 objectFit: "contain",
               }}
-              src={image}
+              src={images['image1']}
               alt="productImg"
             />
             <HStack
@@ -126,7 +126,7 @@ const Card = ({ props }) => {
             Wishlist
           </Button>
           <Stack p="1rem" spacing={0} alignItems={"flex-start"}>
-            <Text>Sizes: {sizes[0]} </Text> 
+            {/* <Text>Sizes: {sizes[0]} </Text>  */}
           </Stack>
         </Box>
       </Box>

@@ -4,6 +4,8 @@ import ResetPasswordForm from "./component/AdminDataBase/ResetPasswordForm";
  import Nav from "./component/Nav";
 //  import {Cartpage} from "./pages/Cartpage";
  import KidsWear from "./component/ProductPage/KidsWear";
+ import MensWear from "./component/ProductPage/MensWear";
+ import WomensWear from "./component/ProductPage/WomensWear";
  import {Cart} from './component/cart/Cart'
  import Footer from './component/footer/Footer'
  import SingleProduct from './component/singlePage/SingleProduct'
@@ -15,11 +17,13 @@ function App() {
   return (
     <div className="App">
       {/* <Cart /> */}
-  <Nav/>
+  {/* <Nav/>
   <SingleProduct />
   
-  <Footer  />
-     <KidsWear />
+  <Footer  /> */}
+     {/* <KidsWear /> */}
+     {/* <MensWear /> */}
+     <WomensWear />
      {/* <AdminPageLogin />
      <ResetPasswordForm /> */}
   
