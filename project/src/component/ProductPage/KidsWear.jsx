@@ -1,66 +1,79 @@
-import { 
+import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
-  Button, 
+  Button,
   SimpleGrid,
   HStack,
+  Checkbox,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
   Stack,
-  Text, 
+  Text,
 } from "@chakra-ui/react";
-import React, { useRef, useState } from "react";
-import FilterByCat from "./FilterByCat";
+import React, { useRef, useState } from "react"; 
 import FilterWithRadio from "./FilterWithRadio";
 
 import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
 
-import { useEffect } from "react"; 
+import { useEffect } from "react";
+// import { useSearchParams } from "react-router-dom";
+
 import { getData } from "../../redux/ProductReducer/action";
-import { useDispatch, useSelector } from "react-redux"; 
-import Card from './Card';
+import { useDispatch, useSelector } from "react-redux";
+import Card from "./Card";
 import Nav from "../Nav";
 
-const ProductPage = () => {
-   
-
-
-  const dispatch = useDispatch();
-  const {productData} = useSelector((store)=>store.ProductReducer)
  
 
+
+const KidsWear = () => {
+  const dispatch = useDispatch();
+  const { productData } = useSelector((store) => store.ProductReducer);
+
+  const [categoryList, setCategoryList] = useState([]);
+  const [brandList, setBrandList] = useState([]);
+
+  const [categoryFilter, setCategoryFilter] = useState([])
+  const [brandFilter, setBrandFilter] = useState([])
+
+  // const [updateProduct, setUpdataProduct] = useState(initialState)
+
+  const handleChange = ({target},filterFun, setFilterFun) => {
+    const name = target.name;
+
+    setFilterFun({...filterFun,[name]:target.checked})
+    
+    }
+    console.log({categoryFilter})
+    console.log({brandFilter})
+    
+    
+
   useEffect(() => {
-      
-      dispatch(getData())
+    dispatch(getData('kids'));
   }, [dispatch]);
 
-  
-  
+  const generateFilterData = (productData, param, setData) => {
+    let obj = {};
 
-  const categaries = [
-    "Tshirts",
-    "Dresses",
-    "Clothing",
-    "Sweathshirts",
-    "Kurta Sets",
-    "Shorts",
-    "Tops",
-    "Shirts",
-  ];
+    // let arr = []
+    for (let item of productData) {
+      obj[item[param]] = true;
+    }
 
-  const brand = [
-    "Hopscotch(1272)",
-    "V-Mart(739)",
-    "H&M ",
-    "Wish Karo",
-    "Peppermint",
-    "KiddoPanti",
-    "Zalio",
-    "Nottie Planet",
-  ];
+    setData(Object.keys(obj));
+  };
+
+  // console.log({ categoryList });
+
+  useEffect(() => {
+    generateFilterData(productData, "category", setCategoryList);
+    generateFilterData(productData, "brand", setBrandList);
+    // generateFilterData(productData,'category')
+  }, [productData]);
 
   const prices = [
     "Rs. 159 to Rs. 1619(11735)",
@@ -107,16 +120,16 @@ const ProductPage = () => {
 
   return (
     <>
-    <Nav />
+      <Nav />
       <Stack p={"1.50rem"}>
         <Stack
           spacing={2}
           align="stretch"
           // border={"1px solid black"}
-          marginBottom='20px'
+          marginBottom="20px"
         >
-          <Breadcrumb className={'breadcrummb'} >
-            <BreadcrumbItem  >
+          <Breadcrumb className={"breadcrummb"}>
+            <BreadcrumbItem>
               <BreadcrumbLink href="#">Home</BreadcrumbLink>
             </BreadcrumbItem>
 
@@ -125,19 +138,21 @@ const ProductPage = () => {
             </BreadcrumbItem>
 
             <BreadcrumbItem isCurrentPage>
-              <BreadcrumbLink as={"b"} cursor='text' >Kids Wear Online Store</BreadcrumbLink>
+              <BreadcrumbLink as={"b"} cursor="text">
+                Kids Wear Online Store
+              </BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
 
-          <Breadcrumb separator="-" className={'breadcrummb'}>
+          <Breadcrumb separator="-" className={"breadcrummb"}>
             <BreadcrumbItem>
-              <BreadcrumbLink as={"b"} cursor='text' href="#">
+              <BreadcrumbLink as={"b"} cursor="text" href="#">
                 Kids Wear Online Store
               </BreadcrumbLink>
             </BreadcrumbItem>
 
             <BreadcrumbItem isCurrentPage>
-              <BreadcrumbLink cursor='text' >208179 items</BreadcrumbLink>
+              <BreadcrumbLink cursor="text">208179 items</BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
         </Stack>
@@ -200,8 +215,12 @@ const ProductPage = () => {
                 <Text as={"b"}> CATEGORIES </Text>
                 <SearchIcon />
               </HStack>
-              {categaries.map((e, i) => (
-                <FilterByCat key={i} children={e} />
+
+              {categoryList.map((e, i) => (
+                // <Checkbox key={i} style={{ textTransform: "capitalize" }}> {e} </Checkbox>
+                <Checkbox key={i} name={e} value={e.brand} onChange={(e)=>handleChange(e,categoryFilter, setCategoryFilter)} style={{ textTransform: "capitalize" }}>
+                  {e}
+                </Checkbox>
               ))}
             </Stack>
             <Stack
@@ -214,8 +233,10 @@ const ProductPage = () => {
                 <Text as={"b"}> BRAND </Text>
                 <SearchIcon />
               </HStack>
-              {brand.map((e, i) => (
-                <FilterByCat key={i} children={e} />
+              {brandList.slice(0, 8).map((e, i) => (
+                <Checkbox key={i} name={e} value={e.brand} onChange={(e)=>handleChange(e,brandFilter, setBrandFilter)} style={{ textTransform: "capitalize" }}>
+                  {e}
+                </Checkbox>
               ))}
             </Stack>
             <Stack
@@ -228,7 +249,8 @@ const ProductPage = () => {
                 <Text as={"b"}> price </Text>
               </HStack>
               {prices.map((e, i) => (
-                <FilterByCat key={i} children={e} />
+                <Checkbox key={i} style={{ textTransform: "capitalize" }}> {e} </Checkbox>
+                // <FilterByCat key={i} children={e} />
               ))}
             </Stack>
             <Stack
@@ -241,7 +263,8 @@ const ProductPage = () => {
                 <Text as={"b"}> DISCOUNT RANGE </Text>
               </HStack>
               {Discounts.map((e, i) => (
-                <FilterByCat key={i} children={e} />
+                <Checkbox key={i} style={{ textTransform: "capitalize" }}> {e} </Checkbox>
+                // <FilterByCat key={i} children={e} />
               ))}
             </Stack>
             <Stack
@@ -254,7 +277,8 @@ const ProductPage = () => {
                 <Text as={"b"}> DELIVERY TIME </Text>
               </HStack>
               {deliveryTime.map((e, i) => (
-                <FilterByCat key={i} children={e} />
+                <Checkbox key={i} style={{ textTransform: "capitalize" }}> {e} </Checkbox>
+                // <FilterByCat key={i} children={e} />
               ))}
               <Text color={" #a39c9c"} fontSize={".8rem"} as={"i"}>
                 Estimated fastest delivery time. Refer to actual delivery time
@@ -282,7 +306,7 @@ const ProductPage = () => {
                     as={Button}
                     // outline="none"
                     // box-shadow="none"
-                    _focusVisible={"none"} 
+                    _focusVisible={"none"}
                     w={"100%"}
                     rightIcon={<ChevronDownIcon />}
                     aria-label="Courses"
@@ -298,7 +322,7 @@ const ProductPage = () => {
                     onMouseLeave={menuListMouseLeaveEvent}
                   >
                     <MenuItem>Recommended</MenuItem>
-                    <MenuItem>What's New</MenuItem>
+                    <MenuItem>By Name</MenuItem>
                     <MenuItem>Popularity</MenuItem>
                     <MenuItem>Price: Low to High</MenuItem>
                     <MenuItem>Price: High to Low</MenuItem>
@@ -309,17 +333,11 @@ const ProductPage = () => {
             </Stack>
 
             <Stack className="product-display">
-              <Stack border="1px solid black" p={"15px 15px"}  >
-                <SimpleGrid columns={[1,1,2,3,4,5]} m='auto' gap='40px' >
-                 
-
+              <Stack border="1px solid black" p={"15px 15px"}>
+                <SimpleGrid columns={[1, 1, 2, 3, 4, 5]} m="auto" gap="40px">
                   {productData.length >= 0 &&
-                    productData?.map((e) => (
-                      
-                      <Card key={e.id} props={e} />
-                    ))}
+                    productData?.map((e) => <Card key={e.id} props={e} />)}
                 </SimpleGrid>
- 
               </Stack>
             </Stack>
           </Stack>
@@ -329,4 +347,4 @@ const ProductPage = () => {
   );
 };
 
-export default ProductPage;
+export default KidsWear;

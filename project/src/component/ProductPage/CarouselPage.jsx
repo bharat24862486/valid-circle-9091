@@ -1,20 +1,22 @@
 import React from "react";
 import Carousel from "nuka-carousel";
 
-export const CarouselPage = ({ arr }) => {
-  const img1 = arr[0]["img1"];
-  const img2 = arr[1]["img2"];
-  const img3 = arr[2]["img3"];
-  const img4 = arr[3]["img4"];
+export const CarouselPage = ({ obj }) => {
+ 
 
-  // console.log('arrCC',img1, img2 , img3, img4);
+  const img1 = obj["image1"];
+  const img2 = obj["image2"];
+  const img3 = obj["image3"];
+  const img4 = obj["image4"];
 
+ 
   return (
     <Carousel
       autoplay={true}
       wrapAround={true}
       style={{ width: "100%", height: "241px", margin: "auto" }}
       pauseOnHover={false}
+      speed={'500'}
       defaultControlsConfig={{
         nextButtonText: "Custom Next",
         prevButtonText: "Custom Prev",
