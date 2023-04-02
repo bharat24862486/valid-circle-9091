@@ -7,54 +7,77 @@ import {
   HStack,
   Checkbox,
   Menu,
+  Center,
   MenuButton,
   MenuItem,
   MenuList,
   Stack,
   Text,
 } from "@chakra-ui/react";
-import React, { useRef, useState } from "react"; 
-import FilterWithRadio from "./FilterWithRadio";
+import React, { useRef, useState } from "react";
 
 import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
 
 import { useEffect } from "react";
-// import { useSearchParams } from "react-router-dom";
-
+import { useSearchParams, useLocation } from "react-router-dom"; 
 import { getData } from "../../redux/ProductReducer/action";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "./Card";
+import Pagination from "./Pagination";
 import Nav from "../Nav";
 
- 
+
+
 
 
 const KidsWear = () => {
   const dispatch = useDispatch();
   const { productData } = useSelector((store) => store.ProductReducer);
+  const [page, setPage] = useState(1)
 
   const [categoryList, setCategoryList] = useState([]);
   const [brandList, setBrandList] = useState([]);
 
-  const [categoryFilter, setCategoryFilter] = useState([])
-  const [brandFilter, setBrandFilter] = useState([])
+  const [filters, setFilters] = useState({});
+  const [sort, setSort] = useState("");
+  const [_sort, setSortBy] = useState("Recommended");
 
-  // const [updateProduct, setUpdataProduct] = useState(initialState)
+  
+  const [params, setParams] = useSearchParams();
+  const [finalFilter, setFinalFilter] = useState(/* {category:params.getAll("category")} ||  */{});
 
-  const handleChange = ({target},filterFun, setFilterFun) => {
-    const name = target.name;
+  const {search} = useLocation()
 
-    setFilterFun({...filterFun,[name]:target.checked})
-    
+// console.log('11111111',search)
+
+  const handleChange = ({ target }) => {
+    const obj = { ...filters };
+
+    if (target.name === "gender") {
+      obj["gender"] = target.value;
+    } else {
+      if (target.checked) {
+        obj[target.value] = target.name;
+      } else {
+        delete obj[target.value];
+      }
     }
-    console.log({categoryFilter})
-    console.log({brandFilter})
-    
-    
+
+    setFilters(obj);
+  };
+
+  // console.log(filters);
 
   useEffect(() => {
-    dispatch(getData('kids'));
-  }, [dispatch]);
+    dispatch(getData("kids",search));
+  }, [dispatch,search]);
+
+  useEffect(() => {
+    // for(let key in finalFilter){
+
+    // }
+    setParams(finalFilter);
+  }, [finalFilter]);
 
   const generateFilterData = (productData, param, setData) => {
     let obj = {};
@@ -70,16 +93,57 @@ const KidsWear = () => {
   // console.log({ categoryList });
 
   useEffect(() => {
-    generateFilterData(productData, "category", setCategoryList);
+  if(categoryList.length < 1){
+      generateFilterData(productData, "category", setCategoryList);
     generateFilterData(productData, "brand", setBrandList);
+  }
     // generateFilterData(productData,'category')
   }, [productData]);
 
+  const dataForFilter = (filters) => {
+    const obj = { category: [], brand: [] };
+    for (let key in filters) {
+      if (key === "gender") {
+        obj[key] = filters[key];
+      } else {
+        obj[filters[key]].push(key);
+      }
+    }
+    // console.log({obj})
+    setFinalFilter(obj);
+  };
+
+  // console.log({sort})
+
+  useEffect(() => {
+    dataForFilter(filters);
+  }, [filters]);
+
+  useEffect(() => {
+    if(sort === "asc" || sort === "desc"){
+      setFinalFilter({ ...finalFilter,_sort:"price",_order:sort})
+    }
+    else if(sort === ""){
+
+      const newFilter =  {...filters}
+      delete finalFilter['_sort']
+      setFinalFilter(newFilter)
+    }
+    else{
+      setFinalFilter({ ...finalFilter,_sort:sort});
+    }
+  }, [sort]);
+
+ 
+  
+  // price[i][1]
+  // price[i][4]
+
   const prices = [
-    "Rs. 159 to Rs. 1619(11735)",
-    "Rs. 1619 to Rs. 3079(1150)",
-    "Rs. 3079 to Rs. 4539(98)",
-    "Rs. 4539 to Rs. 5999(1)",
+    "Rs. 159 to Rs. 1619",
+    "Rs. 1619 to Rs. 3079",
+    "Rs. 3079 to Rs. 4539",
+    "Rs. 4539 to Rs. 5999",
   ];
 
   const Discounts = [
@@ -118,6 +182,11 @@ const KidsWear = () => {
     setIsOpenMenu(false);
   };
 
+
+  if(productData.length <1) {
+    return <h1>Loading...</h1>
+  }
+ 
   return (
     <>
       <Nav />
@@ -152,7 +221,9 @@ const KidsWear = () => {
             </BreadcrumbItem>
 
             <BreadcrumbItem isCurrentPage>
-              <BreadcrumbLink cursor="text">208179 items</BreadcrumbLink>
+              <BreadcrumbLink cursor="text">
+                {productData.length} items
+              </BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
         </Stack>
@@ -187,14 +258,17 @@ const KidsWear = () => {
                 {" "}
                 FILTERS
               </Text>
-              <Text
+              <Button
                 as={"b"}
+                variant='text'
+                cursor='pointer'
                 // border="1px solid black"
                 fontSize={".8rem"}
                 color={"#fe3f6c"}
+                onClick = {()=> setFinalFilter({})}
               >
                 CLEAR ALL
-              </Text>
+              </Button>
             </Stack>
             <Stack
               direction={"column"}
@@ -202,8 +276,40 @@ const KidsWear = () => {
               border="1px solid #e9e9ed"
               padding={".625rem .625rem"}
             >
-              <FilterWithRadio children={"Boys"} />
-              <FilterWithRadio children={"Girls"} />
+              <HStack direction={"row"} justifyContent={"space-between"}>
+                <Text as={"b"}> GENDER </Text>
+                <SearchIcon />
+              </HStack>
+              {/* <FilterWithRadio children={"Boys"} /> */}
+              {/* <FilterWithRadio children={"Girls"} /> */}
+              <Text>
+                <label>
+                  {" "}
+                  <input
+                    name={"gender"}
+                    value={"boys"}
+                    checked={finalFilter?.gender==='boys'}
+                    onChange={handleChange}
+                    style={{ border: "1px solid black" }}
+                    type="radio"
+                  />
+                  &nbsp;Boys
+                </label>
+              </Text>
+              <Text>
+                <label>
+                  {" "}
+                  <input
+                    name={"gender"}
+                    value={"girls"}
+                    onChange={handleChange}
+                    checked={finalFilter?.gender==='girls'}
+                    style={{ border: "1px solid black" }}
+                    type="radio"
+                  />
+                  &nbsp;Girls
+                </label>
+              </Text>
             </Stack>
             <Stack
               direction={"column"}
@@ -217,8 +323,16 @@ const KidsWear = () => {
               </HStack>
 
               {categoryList.map((e, i) => (
+                // console.log(e)
                 // <Checkbox key={i} style={{ textTransform: "capitalize" }}> {e} </Checkbox>
-                <Checkbox key={i} name={e} value={e.brand} onChange={(e)=>handleChange(e,categoryFilter, setCategoryFilter)} style={{ textTransform: "capitalize" }}>
+                <Checkbox
+                  key={i}
+                  name={"category"}
+                  value={e}
+                  isChecked={finalFilter?.category?.includes(`${e}`)}
+                  onChange={handleChange}
+                  style={{ textTransform: "capitalize" }}
+                >
                   {e}
                 </Checkbox>
               ))}
@@ -234,7 +348,14 @@ const KidsWear = () => {
                 <SearchIcon />
               </HStack>
               {brandList.slice(0, 8).map((e, i) => (
-                <Checkbox key={i} name={e} value={e.brand} onChange={(e)=>handleChange(e,brandFilter, setBrandFilter)} style={{ textTransform: "capitalize" }}>
+                <Checkbox
+                  key={i}
+                  name={"brand"}
+                  value={e}
+                  isChecked={finalFilter?.brand?.includes(`${e}`)}
+                  onChange={handleChange}
+                  style={{ textTransform: "capitalize" }}
+                >
                   {e}
                 </Checkbox>
               ))}
@@ -249,7 +370,16 @@ const KidsWear = () => {
                 <Text as={"b"}> price </Text>
               </HStack>
               {prices.map((e, i) => (
-                <Checkbox key={i} style={{ textTransform: "capitalize" }}> {e} </Checkbox>
+                <Checkbox
+                  key={i}
+                  name={"price"}
+                  value={e}
+                  onChange={handleChange}
+                  style={{ textTransform: "capitalize" }}
+                >
+                  {" "}
+                  {e}{" "}
+                </Checkbox>
                 // <FilterByCat key={i} children={e} />
               ))}
             </Stack>
@@ -263,7 +393,10 @@ const KidsWear = () => {
                 <Text as={"b"}> DISCOUNT RANGE </Text>
               </HStack>
               {Discounts.map((e, i) => (
-                <Checkbox key={i} style={{ textTransform: "capitalize" }}> {e} </Checkbox>
+                <Checkbox key={i} style={{ textTransform: "capitalize" }}>
+                  {" "}
+                  {e}{" "}
+                </Checkbox>
                 // <FilterByCat key={i} children={e} />
               ))}
             </Stack>
@@ -277,7 +410,10 @@ const KidsWear = () => {
                 <Text as={"b"}> DELIVERY TIME </Text>
               </HStack>
               {deliveryTime.map((e, i) => (
-                <Checkbox key={i} style={{ textTransform: "capitalize" }}> {e} </Checkbox>
+                <Checkbox key={i} style={{ textTransform: "capitalize" }}>
+                  {" "}
+                  {e}{" "}
+                </Checkbox>
                 // <FilterByCat key={i} children={e} />
               ))}
               <Text color={" #a39c9c"} fontSize={".8rem"} as={"i"}>
@@ -289,12 +425,13 @@ const KidsWear = () => {
 
           <Stack
             className="right-side-menu"
-            border={"1px solid black"}
+            
             w="85rem"
+             p={"20px 0"}
             // minW={'75rem'}
           >
             {/* <Stack w={"20%"} textAlign="right" placeItems={'right'} placeContent='right' */}
-            <Stack w="100%" p={"0 18px"} alignItems={"flex-end"}>
+            <Stack w="100%" p={"0 18px"}  alignItems={"flex-end"}>
               <Stack
                 w={"16rem"}
                 //  border={"1px solid black"}
@@ -314,35 +451,55 @@ const KidsWear = () => {
                     onMouseEnter={btnMouseEnterEvent}
                     onMouseLeave={btnMouseLeaveEvent}
                   >
-                    Sort by : <Text as={"b"}>Recommended</Text>
+                    Sort by : <Text as={"b"}>{_sort}</Text>
                   </MenuButton>
                   <MenuList
                     w={"115%"}
                     onMouseEnter={menuListMouseEnterEvent}
                     onMouseLeave={menuListMouseLeaveEvent}
+                    value={sort}
+                    onClick={(e) => {
+                      setSort(e.target.value);
+                      setSortBy(e.target.name);
+                    }}
                   >
-                    <MenuItem>Recommended</MenuItem>
-                    <MenuItem>By Name</MenuItem>
+                    <MenuItem name={"Recommended"} value={""}>
+                      Recommended
+                    </MenuItem>
+                    <MenuItem name={"Brand Name"} value={"brand"}>
+                      Brand Name
+                    </MenuItem>
+                    <MenuItem name={"Price: Low to High"} value={"asc"}>
+                      Price: Low to High
+                    </MenuItem>
+                    <MenuItem name={"Price: High to Low"} value={"desc"}>
+                      Price: High to Low
+                    </MenuItem>
+                    <MenuItem name={"Customer Rating"} value={"rating"}>
+                      Customer Rating
+                    </MenuItem>
                     <MenuItem>Popularity</MenuItem>
-                    <MenuItem>Price: Low to High</MenuItem>
-                    <MenuItem>Price: High to Low</MenuItem>
-                    <MenuItem>Customer Rating</MenuItem>
                   </MenuList>
                 </Menu>
               </Stack>
             </Stack>
 
             <Stack className="product-display">
-              <Stack border="1px solid black" p={"15px 15px"}>
+              <Stack borderLeft="1px solid  #e9e9ed"  borderTop="1px solid  #e9e9ed" p={"15px 15px"}>
                 <SimpleGrid columns={[1, 1, 2, 3, 4, 5]} m="auto" gap="40px">
                   {productData.length >= 0 &&
-                    productData?.map((e) => <Card key={e.id} props={e} />)}
+                    productData.slice(((page-1)*15),(((page-1)*15)+15)).map((e) => <Card key={e.id} props={e} />)}
                 </SimpleGrid>
               </Stack>
+                <Center marginBottom="20px" > 
+
+<Pagination  page={page} setPage={setPage} totalPage={Math.ceil(productData?.length/15)} />
+</Center>
             </Stack>
           </Stack>
         </Stack>
       </Stack>
+     
     </>
   );
 };

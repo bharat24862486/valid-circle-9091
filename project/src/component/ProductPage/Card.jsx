@@ -132,7 +132,7 @@ const Card = ({ props }) => {
       </Box>
 
       <Text pl="1rem" as={"b"}>
-        {price}{" "}
+        Rs. {price}{" "}
         <span style={{ fontSize: ".7rem", color: "orange" }}>
           {" "}
           &nbsp; {productDiscountPercentage}
