@@ -16,7 +16,7 @@ import { TbTruckReturn } from 'react-icons/tb';
 
 
 
-const SingleProductSecond = ({ title, brand, rating, count, price, discount, size, ageGroup }) => {
+const SingleProductSecond = ({ addToCart, title, brand, rating, count, price, discount, size, ageGroup }) => {
   console.log(title, brand, rating, count, price)
   return (
     <Box>
@@ -67,7 +67,7 @@ const SingleProductSecond = ({ title, brand, rating, count, price, discount, siz
       </Box>
 
       <Box mt={"5%"} mb={"5%"}>
-        <Button color={"white"} background={"pink.500"} pl={"20"} pr={"20"} pt={"7"} pb={"7"}>Add to Bag</Button><span> </span>
+        <Button color={"white"} background={"pink.500"} pl={"20"} pr={"20"} pt={"7"} pb={"7"} onClick={()=>addToCart()} >Add to Bag</Button><span> </span>
         <Button background={"white"} pl={"20"} pr={"20"} pt={"7"} pb={"7"} border={"1px solid black"}>Wishlist</Button>
       </Box>
       <hr />

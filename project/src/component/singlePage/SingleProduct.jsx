@@ -5,8 +5,11 @@ import "../../CSS/SingleProduct.css"
 import SingleProductSecond from './SingleProductSecond'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Stack } from '@chakra-ui/react'
 
+const url = `https://shy-teal-caterpillar-toga.cyclic.app`
 
 const SingleProduct = () => {
+
+
     const [data, setData] = useState({
         rating: "",
         count: "",
@@ -37,6 +40,14 @@ const SingleProduct = () => {
             .then((res) => setData(res.data))
     }, [])
     // data && console.log(data.images.image1)
+
+const addToCart = () => {
+    alert('working addtocart')
+    axios.post(`${url}/cart`, data).then((res)=>res).catch((err)=>console.log(err))
+}
+
+
+
     return (
 
         <div>
@@ -70,7 +81,7 @@ const SingleProduct = () => {
                     {/* <SinglePageGrid data={[data?.images?.image1,data?.images?.image2,data?.images?.image3]}/> */}
                 </div>
                 <div>
-                    {data ? <SingleProductSecond title={data.title} brand={data.brand} rating={data.rating} count={data.count} price={data.price} discount={data.productDiscountPercentage} size={data.sizes} /> : ''}
+                    {data ? <SingleProductSecond addToCart={addToCart} title={data.title} brand={data.brand} rating={data.rating} count={data.count} price={data.price} discount={data.productDiscountPercentage} size={data.sizes} /> : ''}
                     {/* title,brand,rating,count,price,discount,size,ageGroup */}
                 </div>
             </div>
