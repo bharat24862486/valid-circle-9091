@@ -15,10 +15,10 @@ function App() {
   return (
     <div className="App">
       {/* <Cart /> */}
-  {/* <Nav/>
+  <Nav/>
   <SingleProduct />
   
-  <Footer  /> */}
+  <Footer  />
      <KidsWear />
      {/* <AdminPageLogin />
      <ResetPasswordForm /> */}
