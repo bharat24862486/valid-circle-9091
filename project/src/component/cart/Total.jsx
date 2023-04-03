@@ -1,27 +1,87 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { FaTag } from "react-icons/fa";
+import { FaTag } from 'react-icons/fa';
+import { Modal,ModalBody, ModalHeader,Form, FormGroup, Input, Label, Button } from 'reactstrap';
 
-export const Total = () => {
+export const Total = ({total}) => {
+    console.log(total)
+
+    const [modal, setmodal] = useState(false);
+
+    const handle = () => {
+        //console.log("h")
+        setmodal(true);
+    }
+
+
+    const handleSubmit = () => {
+        console.log("hii")
+    }
+
+    const handlePlace = () => {
+        console.log("place")
+    }
   return (
     <DIV>
         <h1>Coupons</h1>
+
+        <Modal 
+            isOpen={modal} 
+            toggle={()=>setmodal(!modal)}>
+                <ModalHeader 
+                    style={{color: "white",
+                    backgroundColor: "#FF4081",
+                    height: "10px",
+                    padding:"20px",
+                    }}
+                    toggle={()=>setmodal(!modal)}>
+                        <p style={{paddingTop:"10px",
+                        textAlign:"center",
+                        fontWeight:"bold"}}>APPLY COUPON</p>
+                </ModalHeader>
+                <ModalBody>
+                    <Form style={{width:"80%",margin:"auto"}} onSubmit={handleSubmit}>
+                    <FormGroup style={{display:"flex",border:"1px solid black"}}>
+                        
+                        <Input style={{fontSize:"10px", margin:"5px 0px",border:"0px"}} type='text' name="state" placeholder='Enter coupon code'  ></Input>
+                    
+                    <Button 
+                        style={{
+                            fontSize:"12px", 
+                            marginBottom:"10px",
+                            fontWeight:"bold", 
+                            display:"block", 
+                            margin:"auto", 
+                            width:"60%",
+                            color:"black",
+                            backgroundColor:"transparent",
+                            border:"1px"}} type="submit">
+                                CHECK
+                    </Button>
+                    
+                    </FormGroup>
+                    </Form>
+                </ModalBody>
+            </Modal>
         <div className='tag'>
-            <h4><FaTag/>{`   Apply Coupons`}</h4>
-            <button className='apply'>APPLY</button>
+            <div className="n">
+            <p><FaTag/></p>
+            <h4>{`   Apply Coupons`}</h4>
+            </div>
+            <button className='apply' onClick={handle}>APPLY</button>
         </div>
 
         <div className="pricetag">
             <h2>PRICE DETAILS ( item)</h2>
             <div className='mrp'>
-                <p>Total MRP :</p>
-                <p className='rs'>₹</p>
+                <p>Total MRP : </p>
+                <p className='rs'>₹ {total}</p>
             </div>
             <div className="amt">
                 <p>Total Amount</p>
-                <p className='rs'>₹</p>
+                <p className='rs'>₹ {total}</p>
             </div>
-            <button className='placeOrder'><h2>PLACE ORDER</h2></button>
+            <button className='placeOrder' onClick={handlePlace}><h2>PLACE ORDER</h2></button>
         </div>
     </DIV>
   )
@@ -31,25 +91,31 @@ export const Total = () => {
 const DIV = styled.div`
     text-align : left;
     padding : 0px 10px;
+    //border : solid red ;
     h1{
         font-size : 12px;
         font-family: Arial, Helvetica, sans-serif;
+        margin : 10px 0px;
     }
-    .tag {
-        border-bottom : 0.5px solid grey;
+    .tag,.tag .n {
+        //border : solid red;
         display : flex;
         justify-content : space-between;
-        align-items : center;
-        padding-bottom : 10px;
+        margin-bottom : 10px;
     }
+    
     .tag h4,h2, .amt p, .mrp p{
         font-size : 10px;
 
     }
+    .tag h4{
+        padding-left : 10px;
+    }
+    
     .apply{
         background-color : transparent;
         margin-right : 10px;
-        padding : 5px 10px;
+        padding : 0px 25px;
         font-size : 10px;
         border-color : #FF4081;
         color :#F50057;
@@ -59,7 +125,9 @@ const DIV = styled.div`
         display : flex;
         //border : solid red;
         justify-content : space-between;
+        padding-bottom : 10px;
         border-bottom : 0.5px solid grey;
+        margin : 10px 0px;
     }
     .amt{
         border : 0px;
@@ -77,7 +145,8 @@ const DIV = styled.div`
         display : block;
         border : 0px;
         color : white;
-        margin-top : 10px;
+        margin : 10px 0px 20px 0px;
+        padding : 6px 0px;
     }
     .apply:hover{
         background-color : #FFCDD2;

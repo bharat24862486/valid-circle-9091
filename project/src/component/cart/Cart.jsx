@@ -1,18 +1,56 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from "styled-components"
 import { AvailOffer } from './AvailOffer'
 import { CartItem } from './CartItem'
 import { Total } from './Total'
+import logo from "../../images/StyleHub.png";
+import secure from "../../images/sprite-secure (1).png";
+import shipfree from "../../images/ship-free.png"
+import { Address } from './Address';
+import {useDispatch, useSelector} from "react-redux";
+import { getCart } from '../../redux/CartReducer/action'
+import store from "../../redux/store";
 
 
 export const Cart = () => {
+  let TOTAL = 0
+  
+  const {bag} = useSelector((store)=>{
+    console.log(store.CartReducer.bag)
+    return store.CartReducer
+    
+  })
+
+  for(let i=0;i<bag.length;i++){
+    TOTAL+= Number(bag[i].price)
+    console.log(Total)
+  }
+  // console.log(TOTAL)
+  function manageTotal(val){
+    TOTAL+=val
+  }
+  // const [data, setdata] = useState([])
+
+  // setdata(bag)
+  // console.log(data)
+  //console.log(bag)
+
+
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(getCart)
+  },[])
+
+
+
   return (
     <DIV>
       {/* -----------------------navbar------------------------------- */}
       <section id='navbar'>
         <div className="nav">
             <div >
-                <img className="logo" src="./images/StyleHub.png" alt="logo" />
+                <img className="logo" src={logo} alt="logo" />
             </div>
             <div className="midnav">
               <a href="bag">Bag -------------------------</a>
@@ -20,19 +58,27 @@ export const Cart = () => {
               <a href="payment">Payment</a>
             </div>
             <div className="secureLogo">
-              <img src="./images/sprite-secure (1).png" alt="" />
+              <img src={secure} alt="" />
               <p>100 % secure</p>
             </div>
         </div>
       </section>
 
       {/* -------------------------------middle section ------------------------------------ */}
+      { bag.length < 1?
+      (<div id="wishlist">
+        <img src="https://constant.myntassets.com/checkout/assets/img/empty-bag.png" alt="" />
+        <h1> Hey, it feels so light!</h1>
+          
+        <p >There is nothing in your bag. Let's add some items.</p> 
 
+    </div>):(
       <section id="address" className="largediv">
         <div id="first">
           <div className="address">
-            <p>Check Delivery Time and services</p>
-            <button>ENTER PIN CODE</button>
+            {/* <p>Check Delivery Time and services</p>
+            <button>ENTER PIN CODE</button> */}
+            <Address/>
           </div>
 
           <div className="offers">
@@ -40,23 +86,29 @@ export const Cart = () => {
           </div>
 
           <div className="shipfree">
-            <img src="./images/ship-free.png" alt="shipfree" />
+            <img src={shipfree} alt="shipfree" />
             <p>Yay! <span>No Convinence Fee</span> on this order</p>
           </div>
 
           <div className="bag">
-              <CartItem/>
+              {bag.map((e)=>{
+                //console.log("e",e)
+                return (
+                  <CartItem 
+                    key={e.id} e={e} bag={bag} manageTotal={manageTotal} values={TOTAL}/>
+                )
+              })}
+              
           </div>
 
         </div>
 
         <div id="payment">
-          <Total/>
+          <Total total={TOTAL}/>
         </div>
 
       </section>
-
-        
+      )} 
     </DIV>
   )
 }
@@ -69,7 +121,15 @@ const DIV = styled.div`
   //border : 1px solid black;
   width : 100%;
  // padding  : 0px 10px;
-  
+  #wishlist{
+    width:60%;
+    //border:solid red;
+    margin:auto;
+  }
+  #wishlist img{
+    padding-top:20px ;
+    margin: auto;
+  }
   .nav{
     //width : 100%;
     //border : solid black;
@@ -83,7 +143,7 @@ const DIV = styled.div`
   
   }
   .nav .logo{
-    width : 60px;
+    width : 80px;
     height : 50px;
     padding-left:20px;
     // border : solid grey;
@@ -174,13 +234,13 @@ const DIV = styled.div`
   .shipfree{
     display : flex;
     align-items : center;
-    width : 80%;
+    width : 75%;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
-    margin : auto;
     margin : 10px auto;
+    padding : 10px 0px;
   }
   .shipfree img{
-    width : 30px;
+    width : 40px;
     height : 20px;
     padding-left : 10px;
   }
@@ -189,6 +249,7 @@ const DIV = styled.div`
     padding-left : 10px;
   }
   .shipfree span{
+    font-size : 10px;
     font-weight: bold;
   }
 
