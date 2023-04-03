@@ -1,4 +1,4 @@
-This is our Git repo of our construct Week Presentation that was given by Masai School. We Have built a website called StyleHub, it is a clone website of myntra.com, as it was a collaborative project we are 4 member team, we have built this website in a span of 5 Days and we have used ReactJs, ChakraUI, styled component, etc. as our tech stack.
+This is our Git repo of our construct Week Presentation that was given by Masai School. We Have built a website called StyleHub, it is a clone website of myntra.com, as it was a collaborative project we are 3 member team, we have built this website in a span of 5 Days and we have used ReactJs, ChakraUI, styled component, etc. as our tech stack.
 ### Home Page and Footer
 
   ![image](./src/Assets/r1.png)
@@ -41,5 +41,4 @@ This is our Git repo of our construct Week Presentation that was given by Masai 
 
 1. Bharat (Team-Lead)
 2. Rahul Singh Kushwah.
-3. Ajay Tayde.
 3. Sakshi Mulekar.
