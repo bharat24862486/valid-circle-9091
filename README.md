@@ -58,7 +58,7 @@ To run this application on your local system
 
 ---
 
-### Home Page and Footer
+<!-- ### Home Page and Footer
 
   ![image](./src/Assets/r1.png)
 
@@ -93,7 +93,7 @@ To run this application on your local system
 ### Payment Section
 ![image](./src/Assets/r10.png)
 
-
+ -->
 
 
 ##  Contributors (Group)
