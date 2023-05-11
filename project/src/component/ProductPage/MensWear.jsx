@@ -9,6 +9,7 @@ import {
   Menu,
   Center,
   MenuButton,
+  Spinner,
   MenuItem,
   MenuList,
   Stack,
@@ -18,6 +19,7 @@ import React, { useRef, useState } from "react";
 
 import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
 
+import Footer from '../footer/Footer'
 import { useEffect } from "react";
 import { useSearchParams, useLocation } from "react-router-dom"; 
 import { getData } from "../../redux/ProductReducer/action";
@@ -182,7 +184,7 @@ const MensWear = () => {
 
 
   if(productData.length <1) {
-    return <h1>Loading...</h1>
+    return <Center style={{marginTop:'50vh'}}><Spinner /> </Center>
   }
  
   return (
@@ -459,7 +461,7 @@ const MensWear = () => {
           </Stack>
         </Stack>
       </Stack>
-     
+     <Footer />
     </>
   );
 };

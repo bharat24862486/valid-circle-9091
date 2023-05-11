@@ -1,4 +1,5 @@
 import "./App.css";
+import AllRoutes from "./Routes";
 import AdminPageLogin from "./component/AdminDataBase/AdminPageLogin";
 import ResetPasswordForm from "./component/AdminDataBase/ResetPasswordForm";
  import Nav from "./component/Nav";
@@ -8,7 +9,12 @@ import ResetPasswordForm from "./component/AdminDataBase/ResetPasswordForm";
  import WomensWear from "./component/ProductPage/WomensWear";
  import {Cart} from './component/cart/Cart'
  import Footer from './component/footer/Footer'
- import SingleProduct from './component/singlePage/SingleProduct'
+ import SingleProduct from './component/singlePage/SingleProduct' 
+import Otp from "./pages/Otp";
+import Payment from "./pages/Payment";
+import PaymentSuccess from "./pages/PaymentSuccess";
+import Signup from "./pages/Signup";
+// import Footer from "./pages/Signup";
  
 function App() {
  
@@ -16,18 +22,11 @@ function App() {
   
   return (
     <div className="App">
-      {/* <Cart /> */}
-  {/* <Nav/>
-  <SingleProduct />
-  
-  <Footer  /> */}
-     {/* <KidsWear /> */}
-     {/* <MensWear /> */}
-     <WomensWear />
-     {/* <AdminPageLogin />
-     <ResetPasswordForm /> */}
-  
-       
+      {/* <Nav /> */}
+   <AllRoutes />
+  {/* <Footer /> */}
+   {/* <Signup />
+   <Otp /> */}
     </div>
   );
 }

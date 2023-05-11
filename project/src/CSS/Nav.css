@@ -3,7 +3,22 @@
   align-items: center;
   justify-content: space-around;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  width:100%;
+  /* margin-bottom:50px; */
+  /* background:'white' !important; */
+  position: absolute;
+  top:0;
 
+}
+.NavMain2{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  width:100%;
+  /* margin-bottom:50px; */
+  /* background:'white' !important; */
+  
 }
 .firstNavMain{
   display: flex;
@@ -336,6 +351,7 @@ cursor: pointer;
 /**navigation css ***/
 #nav {
   width: 100%;
+
   /* border-bottom: 1px solid #ccc; */
   font-size:15px;
   font-family: 'montserrat';

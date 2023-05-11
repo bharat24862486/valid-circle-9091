@@ -12,6 +12,7 @@ import {
   MenuItem,
   MenuList,
   Stack,
+  Spinner,
   Text,
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
@@ -19,14 +20,15 @@ import React, { useRef, useState } from "react";
 import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
 
 import { useEffect } from "react";
-import { useSearchParams, useLocation } from "react-router-dom"; 
+import { useSearchParams, useLocation, Link } from "react-router-dom"; 
 import { getData } from "../../redux/ProductReducer/action";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "./Card";
 import Pagination from "./Pagination";
 import Nav from "../Nav";
-
-
+ 
+import Footer from '../footer/Footer'
+// import Footer from '../footer/Footer'
 
 
 
@@ -184,7 +186,7 @@ const KidsWear = () => {
 
 
   if(productData.length <1) {
-    return <h1>Loading...</h1>
+    return <Center style={{marginTop:'50vh'}}><Spinner /> </Center>
   }
  
   return (
@@ -488,7 +490,7 @@ const KidsWear = () => {
               <Stack borderLeft="1px solid  #e9e9ed"  borderTop="1px solid  #e9e9ed" p={"15px 15px"}>
                 <SimpleGrid columns={[1, 1, 2, 3, 4, 5]} m="auto" gap="40px">
                   {productData.length >= 0 &&
-                    productData.slice(((page-1)*15),(((page-1)*15)+15)).map((e) => <Card key={e.id} props={e} />)}
+                    productData.slice(((page-1)*15),(((page-1)*15)+15)).map((e) => <Link to={`/kidsproduct/${e.id}`}>< Card key={e.id} props={e} /></Link>)}
                 </SimpleGrid>
               </Stack>
                 <Center marginBottom="20px" > 
@@ -499,7 +501,7 @@ const KidsWear = () => {
           </Stack>
         </Stack>
       </Stack>
-     
+     <Footer />
     </>
   );
 };

@@ -15,7 +15,7 @@ const MobileNav = () => {
     }
     return (
         <div>
-            <div className='NavMain'>
+            <div className='NavMain2' >
 
                 <div className='HamBurger'>
                     <GiHamburgerMenu onClick={()=>setHamburger(!hamburger)}/>

@@ -3,12 +3,20 @@ import React, { useEffect, useState } from 'react'
 import SinglePageGrid from './SinglePageGrid'
 import "../../CSS/SingleProduct.css"
 import SingleProductSecond from './SingleProductSecond'
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Stack } from '@chakra-ui/react'
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Stack,useToast } from '@chakra-ui/react'
+import { useParams } from 'react-router-dom'
+import Nav from '../Nav'
+import Footer from '../footer/Footer'
+
 
 const url = `https://shy-teal-caterpillar-toga.cyclic.app`
 
 const SingleProduct = () => {
 
+ const {id} = useParams()
+ const toast = useToast()
+
+//  console.log('search',id)
 
     const [data, setData] = useState({
         rating: "",
@@ -33,7 +41,7 @@ const SingleProduct = () => {
 
     })
     function singleGet() {
-        return axios.get(`http://localhost:8080/kids/1`)
+        return axios.get(`https://shy-teal-caterpillar-toga.cyclic.app/kids/${id}`)
     }
     useEffect(() => {
         singleGet()
@@ -41,16 +49,34 @@ const SingleProduct = () => {
     }, [])
     // data && console.log(data.images.image1)
 
+    
+
+    const AddToCartToast = (title) => {
+  
+      toast({
+        title:title,
+        // description: des, 
+        status: 'success',
+        position: 'top',
+        duration: 3000,
+        isClosable: true,
+      })
+    }
+
+
+
 const addToCart = () => {
-    alert('working addtocart')
+    // alert('working addtocart')
+    // "Added to Cart"
+    AddToCartToast("Added to Cart")
     axios.post(`${url}/cart`, data).then((res)=>res).catch((err)=>console.log(err))
 }
 
 
 
     return (
-
         <div>
+            <Nav />
             <Stack
                 spacing={2}
                 align="stretch"
@@ -85,8 +111,9 @@ const addToCart = () => {
                     {/* title,brand,rating,count,price,discount,size,ageGroup */}
                 </div>
             </div>
-
+            <Footer />
         </div>
+        
     )
 }
 

@@ -11,11 +11,13 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Spinner,
   Stack,
   Text,
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 
+import Footer from '../footer/Footer'
 import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
 
 import { useEffect } from "react";
@@ -182,7 +184,7 @@ const WomensWear = () => {
 
 
   if(productData.length <1) {
-    return <h1>Loading...</h1>
+    return <Center style={{marginTop:'50vh'}}><Spinner /> </Center>
   }
  
   return (
@@ -459,7 +461,7 @@ const WomensWear = () => {
           </Stack>
         </Stack>
       </Stack>
-     
+     <Footer />
     </>
   );
 };

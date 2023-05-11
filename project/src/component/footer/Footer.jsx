@@ -9,6 +9,7 @@ import Check from '../../CSS/Footer.css'
 
 
 const Footer = () => {
+   
   return (
     <div>
 
@@ -18,7 +19,7 @@ const Footer = () => {
           <div className='MainFooter'>
             <div className='FooterFlex'>
               <div className="col-span-2">
-                <h1 className=' text-sm font-semibold '>ONLINE&nbsp;SHOPPING</h1>
+                <h5 className=' text-sm font-semibold '>ONLINE&nbsp;SHOPPING</h5>
                 <ul className=' text-sm text-slate-500 pt-6'>
                   <li>Men</li>
                   <li>Women</li>
@@ -31,7 +32,7 @@ const Footer = () => {
               </div>
 
               <div className="col-span-2">
-                <h1 className='text-sm font-semibold col-span-2'>USEFUL LINKS</h1>
+                <h5 style={{fontSize:"18px"}}>USEFUL LINKS</h5>
                 <ul className='text-sm text-slate-500 pt-6'>
                   <li className="">Contact Us</li>
                   <li className="">FAQ</li>
@@ -51,7 +52,7 @@ const Footer = () => {
               </div>
 
               <div className="col-span-4">
-                <h1 className=''>EXPERIENCE MYNTRA APP ON MOBILE</h1>
+                <h5 className=''>EXPERIENCE MYNTRA APP ON MOBILE</h5>
                 <div className='FooterImageOne'>
                   <img src={g1} alt="" />
                   <img src={g2} alt="" />
@@ -88,11 +89,12 @@ const Footer = () => {
 
             </div>
             <div className='FooterLastSection'>
-              <h1 className='font-semibold text-black mb-4 mt-4 text-sm'>POPULAR SEARCHES</h1>
-              <h1>
+              <h5 className='font-semibold text-black mb-4 mt-4 text-sm'>POPULAR SEARCHES</h5>
+              <h5>
                 Makeup | Dresses For Girls | T-Shirts | Sandals | Headphones | Babydolls | Blazers For Men | Handbags | Ladies Watches | Bags | Sport Shoes | Reebok Shoes | Puma Shoes | Boxers | Wallets | Tops | Earrings | Fastrack Watches | Kurtis | Nike | Smart Watches | Titan Watches | Designer Blouse | Gowns | Rings | Cricket Shoes | Forever 21 | Eye Makeup | Photo Frames | Punjabi Suits | Bikini | Myntra Fashion Show | Lipstick | Saree | Watches | Dresses | Lehenga | Nike Shoes | Goggles | Bras | Suit | Chinos | Shoes | Adidas Shoes | Woodland Shoes | Jewellery | Designers Sarees
-              </h1>
-            </div>
+              </h5>
+            </div> 
+            
             <div className='relative w-10/12 mx-auto text-slate-600'>
               <span className='absolute right-0'> © 2022 www.myntra.com. All rights reserved.</span>
             </div>

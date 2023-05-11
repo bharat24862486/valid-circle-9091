@@ -268,9 +268,13 @@ import mc6 from '../imagess/mc6.webp'
 import mc7 from '../imagess/mc7.webp'
 import mc8 from '../imagess/mc8.webp'
 import HomePart from './HomePart'
+import Nav from '../Nav'
+import Footer from '../footer/Footer'
+ 
 
 const Home = () => {
-  return (
+  return ( <>
+      <Nav />
     <div style={{marginTop:"2%"}}>
         <div>
         <img src={b1} alt="" style={{width:"100%"}}/>
@@ -288,6 +292,11 @@ const Home = () => {
         </div>
       
     </div>
+    <div>
+      
+    <Footer />
+    </div>
+    </>
   )
 }
 

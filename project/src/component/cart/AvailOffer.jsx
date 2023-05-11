@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components"
+import offorlogo from "../../images/offor logo.jpg"
 
 export const AvailOffer = () => {
     const settings = {
@@ -15,6 +16,7 @@ export const AvailOffer = () => {
         autoplaySpeed: 2000,
         cssEase: "linear"
       };
+
     const data = [{title:"Get up to Rs.500 Freecharge Cashback on spend of Rs.1000"},{title:"5% Unlimited Cashback on a spend of Flipkart Axis Bank Credit Card."},{title:"10% Cashback upto Rs 150 on Freecharge Paylater transaction. TCA"}]
 
       
@@ -22,7 +24,7 @@ export const AvailOffer = () => {
   return (
     <DIV>
         <div className='firstdiv'>
-            <img className='offlogo' src="./images/offor logo.jpg" alt="offorlogo" />
+            <img className='offlogo' src={offorlogo} alt="offorlogo" />
             <p>Available Offer</p>
         </div>
 
@@ -30,9 +32,9 @@ export const AvailOffer = () => {
             <Slider {...settings}>
                 {data.map((e)=>{
                     return(
-                        <div className='div'>
-                            <li>{e.title}</li>
-                        </div>
+                        
+                            <li className='div'key={e.id}>{e.title}</li>
+                        
                     )
                 })}
             </Slider>
@@ -51,15 +53,17 @@ const DIV = styled.div`
     .firstdiv{
         // border : solid grey;
         display : flex;
-        align-items : center;
-
+        padding-top : 10px;
+          
     }
     .firstdiv img{
         width : 20px;
         height : 20px;
+        
     }
-    p{
+    .firstdiv p{
         font-weight:bold;
+        //margin-top : 10px;
     }
     p,li{
         font-size : 10px;
@@ -73,4 +77,3 @@ const DIV = styled.div`
         margin-bottom : 20px;
     }
 `
-
