@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 
 
@@ -251,9 +251,9 @@ import ma6 from '../imagess/ma6.webp'
 import ma7 from '../imagess/ma7.webp'
 import ma8 from '../imagess/ma8.webp'
 import ma9 from '../imagess/ma9.webp'
-import ma10 from'../imagess/ma10.webp'
-import ma11 from'../imagess/ma11.webp'
-import mm3 from'../imagess/mm3.jpg'
+import ma10 from '../imagess/ma10.webp'
+import ma11 from '../imagess/ma11.webp'
+import mm3 from '../imagess/mm3.jpg'
 import mad1 from '../imagess/mad1.jpg'
 import mm1_1 from '../imagess/mm1-1.gif'
 import mm1_2 from '../imagess/mm1-2.gif'
@@ -270,33 +270,37 @@ import mc8 from '../imagess/mc8.webp'
 import HomePart from './HomePart'
 import Nav from '../Nav'
 import Footer from '../footer/Footer'
- 
+import { Box } from '@chakra-ui/react'
+import MobNav2 from '../NavBar/MobNav2'
+import MobileNav from '../NavBar/MobileNav'
+
 
 const Home = () => {
-  return ( <>
-      <Nav />
-    <div style={{marginTop:"2%"}}>
-        <div>
-        <img src={b1} alt="" style={{width:"100%"}}/>
-        <HomePart data={[d1,d2,d3,d4,d5,d6,d7,d8]} text="DEAL OF THE DAY" length={8}/>
-        <HomePart data={[a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16]} text="BEST OF MYNTRA EXCLUSIVE BRANDS" length={8}/>
-        <HomePart data={[bb1,bb2,bb3,bb4,bb5,bb6,bb7]} text="TOP PICKS" length={7}/>
-        <HomePart data={[c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15,c16,c17,c18,c19,c20,c21,c22,c23,c24]} text="CATEGORIES TO BAG" length={8}/>
-        <HomePart data={[e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14,e15,e16,e17,e18,e19,e20,e21,e22,e23,e24]} text="DEALS ON TOP BRANDS" length={8}/>
-        <HomePart data={[f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,f14]} text="BRANDS AT SLASHED PRICES" length={7}/>
-        <HomePart data={[g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,g11,g12,g13,g14,g15,g16]} text="BEST BUYS" length={8}/>
-        <HomePart data={[h1,h2,h3,h4,h5,h6,h7,h8,h9,h10,h11,h12,h13,h14,h15,h16]} text="MYNTRA LUXE" length={8}/>
-        <HomePart data={[i1,i2,i3,i4]} text="GIFTING CARDS" length={4}/>
-        <HomePart data={[j1,j2,j3,j4]} text="DEALS ON LATEST ARRIVALS" length={2}/>
-        <HomePart data={[k1,k2,k3,k4,k5,k6,k7,k8,k9,k10,k11,k12,k13,k14,k15,k16]} text="SPRING SUMMER 2022- FIRST ON MYNTRA" length={8}/>
-        </div>
-      
-    </div>
-    <div>
-      
-    <Footer />
-    </div>
-    </>
+  const [hamburger, setHamburger] = useState(false)
+  return (<Box mt={"0px"}>
+    
+    {hamburger ? <MobileNav setHamburger={setHamburger} hamburger={hamburger}/> : <Box >
+      <Box>
+      <Nav setHamburger={setHamburger} hamburger={hamburger}/>
+        <img src={b1} alt="" style={{ width: "100%" }} />
+        <HomePart data={[d1, d2, d3, d4, d5, d6, d7, d8]} text="DEAL OF THE DAY" length={8} />
+        <HomePart data={[a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16]} text="BEST OF MYNTRA EXCLUSIVE BRANDS" length={8} />
+        <HomePart data={[bb1, bb2, bb3, bb4, bb5, bb6, bb7]} text="TOP PICKS" length={7} />
+        <HomePart data={[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20, c21, c22, c23, c24]} text="CATEGORIES TO BAG" length={8} />
+        <HomePart data={[e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, e20, e21, e22, e23, e24]} text="DEALS ON TOP BRANDS" length={8} />
+        <HomePart data={[f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14]} text="BRANDS AT SLASHED PRICES" length={7} />
+        <HomePart data={[g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, g13, g14, g15, g16]} text="BEST BUYS" length={8} />
+        <HomePart data={[h1, h2, h3, h4, h5, h6, h7, h8, h9, h10, h11, h12, h13, h14, h15, h16]} text="MYNTRA LUXE" length={8} />
+        <HomePart data={[i1, i2, i3, i4]} text="GIFTING CARDS" length={4} />
+        <HomePart data={[j1, j2, j3, j4]} text="DEALS ON LATEST ARRIVALS" length={2} />
+        <HomePart data={[k1, k2, k3, k4, k5, k6, k7, k8, k9, k10, k11, k12, k13, k14, k15, k16]} text="SPRING SUMMER 2022- FIRST ON MYNTRA" length={8} />
+        <Footer />
+      </Box>
+
+    </Box>}
+
+    
+  </Box>
   )
 }
 

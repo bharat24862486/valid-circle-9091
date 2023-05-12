@@ -1,18 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PhoneIcon, AddIcon, WarningIcon, SearchIcon } from "@chakra-ui/icons";
 import "../CSS/Nav.css";
 import MobileNav from "./NavBar/MobileNav";
 import { Link } from "react-router-dom";
+import MobNav2 from "./NavBar/MobNav2";
 
 // import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
-const Nav = () => {
+const Nav = ({setHamburger,hamburger}) => {
   function handleInput() {}
+  const [windowDimension, detectHW] = useState({
+    winWidth: window.innerWidth,
+  });
+
+  const detectSize = () => {
+    detectHW({
+      winWidth: window.innerWidth,
+    });
+  };
+  useEffect(() => {
+    window.addEventListener("resize", detectSize);
+
+    return () => {
+      window.removeEventListener("resize", detectSize);
+    };
+  }, [windowDimension])
+
+  console.log(windowDimension.winWidth);
+
   return (
     // <div style={{border:"1px solid black", height:'80px'}}>Nav</div>
-    <div style={{position:'sticky',top:0, border:'1px solid red',backgroundColor:'white', marginBottom:'100px',zIndex:'1000'}}>
+    <div style={{position:'sticky',top:"0", backgroundColor:'white', marginTop:"0px",boxShadow:"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",zIndex:100}}>
       {/* style={{backgroundColor:'white', position:"fixed", top:0, left:0}} */}
-      {window.screen.width > 1024 ? (
+      {windowDimension.winWidth > 1024 ? (
         <div className="NavMain" style={{backgroundColor:'white', marginTop:0}} >
           <Link to='/'>
           <div >
@@ -651,7 +671,7 @@ const Nav = () => {
           </div>
         </div>
       ) : (
-        <MobileNav />
+        <MobNav2 setHamburger={setHamburger} hamburger={hamburger}/>
       )}
     </div>
   );
