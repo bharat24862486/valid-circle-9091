@@ -8,7 +8,7 @@ const HomePart = ({text,data,length}) => {
     <div>
         <Heading as='h2' size='lg' mt={"4%"} ml={"2%"}>{text}</Heading>
 
-       <SimpleGrid columns={length} spacing={0} mt={"4%"}>
+       <SimpleGrid columns={[length-4,length-2,length]} spacing={0} mt={"4%"}>
         {data.map((el)=>{
             return <Image src={el}/>
         })}

@@ -3,123 +3,66 @@ import { PhoneIcon, AddIcon, WarningIcon, SearchIcon } from '@chakra-ui/icons'
 import "../../CSS/Nav.css"
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { RiArrowDropDownLine } from 'react-icons/ri'
+import { RxCross2 } from 'react-icons/rx'
+
+import { Stack, Box, Text, HStack, Button, Flex, IconButton, Image } from "@chakra-ui/react";
 // RiArrowDropDownLine
 import BANNER from '../imagess/Nbanner.webp'
+// import {Box} from ""
 
 
 
-const MobileNav = () => {
-    const [hamburger, setHamburger] = useState(false)
+const MobileNav = ({setHamburger,hamburger}) => {
+    
     function handleInput() {
 
     }
     return (
-        <div>
-            <div className='NavMain2' >
+        <Box border={"none"} >
+            {hamburger ? <Box  w={"100%"} p={"1%"} border={"none"}>
+                <nav className="HamNav">
+                    <Flex color={"black"} justifyContent={"space-between"}><IconButton onClick={()=>setHamburger(false)} color={"black"} bgColor={"white"}><RxCross2 /></IconButton> <Button color={"white"} bgColor={"#E91E63"}>Login</Button></Flex>
+                    <img src={BANNER} alt="" />
 
-                <div className='HamBurger'>
-                    <GiHamburgerMenu onClick={()=>setHamburger(!hamburger)}/>
-                    <div>
-                        <img src='https://i.ibb.co/kG5RxHg/StyleHub.png' alt="" style={{ width: "100px", marginLeft: "20px" }} />
-                    </div>
-                </div>
-                <div className='firstNavMain'>
-                    {/* <nav id="nav">
-                        <ul>
-                            <li>
-                                Men
+                    <ul>
+                        <li style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                            Men
+                            <p><RiArrowDropDownLine size={"30px"} /></p>
 
-                            </li>
-                            <li>
-                                Women
+                        </li>
+                        <li style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                            Women
+                            <p><RiArrowDropDownLine size={"30px"} /></p>
 
-                            </li>
-                            <li>
-                                Kids
+                        </li>
+                        <li style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                            Kids
+                            <p><RiArrowDropDownLine size={"30px"} /></p>
 
-                            </li>
-                            <li>
-                                Home & Living
+                        </li>
+                        <li style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                            Home & Living
+                            <p><RiArrowDropDownLine size={"30px"} /></p>
 
-                            </li>
-                            <li>
-                                Beauty
+                        </li>
+                        <li style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                            Beauty
+                            <p><RiArrowDropDownLine size={"30px"} /></p>
 
-                            </li>
-                            <li>
-                                Studio
+                        </li>
+                        <li style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                            Studio
+                            <p><RiArrowDropDownLine size={"30px"} /></p>
 
-                            </li>
-                        </ul>
-                    </nav> */}
-                </div>
-                {/* <div className='secondNavMain'>
-        <div>
-        
-        <input type="text"  onChange={handleInput} />
-        <span><SearchIcon /></span>
-        </div>
+                        </li>
+                    </ul>
+                </nav>
 
+            </Box> : ''
+                
+            }
 
-      </div> */}
-                <div className='thirdNavMainMobile'>
-                    <div>
-                        <img src="https://img.icons8.com/ios/256/gender-neutral-user--v1.png" style={{ width: "25px" }} alt="" />
-                        <p>Profile</p>
-                    </div>
-                    <div>
-                        <img src="https://img.icons8.com/ios-glyphs/256/hearts.png" style={{ width: "25px" }} alt="" />
-                        <p>Wishlist</p>
-                    </div>
-                    <div>
-                        <img src="https://img.icons8.com/windows/256/shopping-bag-full.png" style={{ width: "25px" }} alt="" />
-                        <p>Bag</p>
-                    </div>
-
-
-
-                </div>
-            </div>
-            {hamburger ? <div className='HiddenPart'>
-            <nav className="HamNav">
-                <img src={BANNER} alt="" />
-
-                        <ul>
-                            <li style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
-                                Men
-                                <p><RiArrowDropDownLine size={"30px"} /></p>
-
-                            </li>
-                            <li style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
-                                Women
-                                 <p><RiArrowDropDownLine size={"30px"} /></p>
-
-                            </li>
-                            <li style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
-                                Kids
-                                 <p><RiArrowDropDownLine size={"30px"} /></p>
-
-                            </li>
-                            <li style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
-                                Home & Living
-                                 <p><RiArrowDropDownLine size={"30px"} /></p>
-
-                            </li>
-                            <li style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
-                                Beauty
-                                 <p><RiArrowDropDownLine size={"30px"} /></p>
-
-                            </li>
-                            <li style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
-                                Studio
-                                 <p><RiArrowDropDownLine size={"30px"} /></p>
-
-                            </li>
-                        </ul>
-                    </nav>
-
-            </div> : ''}
-        </div>
+        </Box>
     )
 }
 

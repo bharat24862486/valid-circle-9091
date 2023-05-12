@@ -14,6 +14,7 @@ import Otp from "./pages/Otp";
 import Payment from "./pages/Payment";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import Signup from "./pages/Signup";
+// import Yoga from "./pages/Yoga";
 // import Footer from "./pages/Signup";
  
 function App() {
@@ -27,6 +28,7 @@ function App() {
   {/* <Footer /> */}
    {/* <Signup />
    <Otp /> */}
+   {/* <Yoga /> */}
     </div>
   );
 }
