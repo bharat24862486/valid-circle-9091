@@ -22,7 +22,7 @@ import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
 
 import Footer from '../footer/Footer'
 import { useEffect } from "react";
-import { useSearchParams, useLocation } from "react-router-dom";
+import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
 import { getData } from "../../redux/ProductReducer/action";
 import { useDispatch, useSelector } from "react-redux";
 import CardForMensAndWomen from "./CardForMensAndWomen";
@@ -34,6 +34,7 @@ import MobileNav from "../NavBar/MobileNav";
 
 const MensWear = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const { productData } = useSelector((store) => store.ProductReducer);
   const [page, setPage] = useState(1)
   const [hamburger, setHamburger] = useState(false)
@@ -456,7 +457,7 @@ const MensWear = () => {
                 <Stack borderLeft="1px solid  #e9e9ed" borderTop="1px solid  #e9e9ed" p={"15px 15px"}>
                   <SimpleGrid columns={[1, 1, 2, 3, 4, 5]} m="auto" gap="40px">
                     {productData.length >= 0 &&
-                      productData.slice(((page - 1) * 15), (((page - 1) * 15) + 15)).map((e) => <CardForMensAndWomen key={e.id} props={e} />)}
+                      productData.slice(((page - 1) * 15), (((page - 1) * 15) + 15)).map((e) => <Box onClick={()=>navigate(`/product/${e.id}`,{state:"men"})}>< CardForMensAndWomen key={e.id} props={e} /></Box>)}
                   </SimpleGrid>
                 </Stack>
                 <Center marginBottom="20px" >

@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 
 
@@ -270,7 +272,7 @@ import mc8 from '../imagess/mc8.webp'
 import HomePart from './HomePart'
 import Nav from '../Nav'
 import Footer from '../footer/Footer'
-import { Box } from '@chakra-ui/react'
+import { Box, Image } from '@chakra-ui/react'
 import MobNav2 from '../NavBar/MobNav2'
 import MobileNav from '../NavBar/MobileNav'
 
@@ -278,11 +280,20 @@ import MobileNav from '../NavBar/MobileNav'
 const Home = () => {
   const [hamburger, setHamburger] = useState(false)
   return (<Box mt={"0px"}>
-    
-    {hamburger ? <MobileNav setHamburger={setHamburger} hamburger={hamburger}/> : <Box >
+
+    {hamburger ? <MobileNav setHamburger={setHamburger} hamburger={hamburger} /> : <Box >
       <Box>
-      <Nav setHamburger={setHamburger} hamburger={hamburger}/>
-        <img src={b1} alt="" style={{ width: "100%" }} />
+        <Nav setHamburger={setHamburger} hamburger={hamburger} />
+        <Carousel autoPlay interval={"2000"} infiniteLoop>
+          <Image src={b1} alt="" w={"100%"} />
+          <Image src={b2} alt="" w={"100%"} />
+          <Image src={b3} alt="" w={"100%"} />
+          <Image src={b4} alt="" w={"100%"} />
+          <Image src={b5} alt="" w={"100%"} />
+          <Image src={b6} alt="" w={"100%"} />
+          <Image src={b7} alt="" w={"100%"} />
+          <Image src={b8} alt="" w={"100%"} />
+        </Carousel>
         <HomePart data={[d1, d2, d3, d4, d5, d6, d7, d8]} text="DEAL OF THE DAY" length={8} />
         <HomePart data={[a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16]} text="BEST OF MYNTRA EXCLUSIVE BRANDS" length={8} />
         <HomePart data={[bb1, bb2, bb3, bb4, bb5, bb6, bb7]} text="TOP PICKS" length={7} />
@@ -299,7 +310,7 @@ const Home = () => {
 
     </Box>}
 
-    
+
   </Box>
   )
 }

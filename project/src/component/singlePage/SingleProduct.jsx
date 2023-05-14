@@ -3,17 +3,25 @@ import React, { useEffect, useState } from 'react'
 import SinglePageGrid from './SinglePageGrid'
 import "../../CSS/SingleProduct.css"
 import SingleProductSecond from './SingleProductSecond'
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Stack,useToast } from '@chakra-ui/react'
-import { useParams } from 'react-router-dom'
+import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Stack,useToast } from '@chakra-ui/react'
+import { useLocation, useParams } from 'react-router-dom'
 import Nav from '../Nav'
 import Footer from '../footer/Footer'
+import MobileNav from '../NavBar/MobileNav'
 
 
 const url = `https://shy-teal-caterpillar-toga.cyclic.app`
 
 const SingleProduct = () => {
 
+    const {state} = useLocation()
+
+    console.log(state,"single product 18")
+
+
+
  const {id} = useParams()
+ console.log(id,"id")
  const toast = useToast()
 
 //  console.log('search',id)
@@ -41,13 +49,13 @@ const SingleProduct = () => {
 
     })
     function singleGet() {
-        return axios.get(`https://shy-teal-caterpillar-toga.cyclic.app/kids/${id}`)
+        return axios.get(`https://shy-teal-caterpillar-toga.cyclic.app/${state}/${id}`)
     }
     useEffect(() => {
         singleGet()
             .then((res) => setData(res.data))
-    }, [])
-    // data && console.log(data.images.image1)
+    }, [id])
+    data && console.log(data.images.image1)
 
     
 
@@ -72,11 +80,16 @@ const addToCart = () => {
     axios.post(`${url}/cart`, data).then((res)=>res).catch((err)=>console.log(err))
 }
 
+const [hamburger, setHamburger] = useState(false)
+
 
 
     return (
-        <div>
-            <Nav />
+        
+        <Box>
+            {hamburger ? <MobileNav setHamburger={setHamburger} hamburger={hamburger}/> : <Box >
+            <Box>
+            <Nav setHamburger={setHamburger} hamburger={hamburger}/>
             <Stack
                 spacing={2}
                 align="stretch"
@@ -102,9 +115,9 @@ const addToCart = () => {
             <div className='SingleFlex'>
 
                 <div>
-                    {console.log(data)}
+                    {/* {console.log(data)} */}
                     {data?.images ? <SinglePageGrid datas={[data.images.image1, data.images.image2, data.images.image3]} /> : ''}
-                    {/* <SinglePageGrid data={[data?.images?.image1,data?.images?.image2,data?.images?.image3]}/> */}
+                    
                 </div>
                 <div>
                     {data ? <SingleProductSecond addToCart={addToCart} title={data.title} brand={data.brand} rating={data.rating} count={data.count} price={data.price} discount={data.productDiscountPercentage} size={data.sizes} /> : ''}
@@ -112,7 +125,9 @@ const addToCart = () => {
                 </div>
             </div>
             <Footer />
-        </div>
+            </Box>
+            </Box>}
+        </Box>
         
     )
 }
