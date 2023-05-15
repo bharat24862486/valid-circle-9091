@@ -4,9 +4,10 @@ import {
   PRODUCTDATAREQ,
   PRODUCTDATASUCCESS,
 } from "./actionTypes";
+import { baseUrl } from "../../Url";
 
 // const url = `http://localhost:8080/kids`
-const url = `https://shy-teal-caterpillar-toga.cyclic.app`
+// const url = `https://shy-teal-caterpillar-toga.cyclic.app`
 
 export const getData = (params,query) => {
  
@@ -14,7 +15,7 @@ export const getData = (params,query) => {
   return async (dispatch) => {
     dispatch({ type: PRODUCTDATAREQ });
     try {
-      let res = await axios.get(`${url}/${params}${query}`);
+      let res = await axios.get(`${baseUrl}/${params}${query}`);
       dispatch({ type: PRODUCTDATASUCCESS, payload: res.data });
       // console.log("res", res);
        
