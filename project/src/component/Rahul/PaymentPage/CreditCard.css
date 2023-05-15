@@ -28,17 +28,16 @@
   background: #fff;
   /* background: red; */
   border-radius: 5px;
-
   /* box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); */
   
   padding: 20px;
-  width: 40%;
+  width: 70%;
   padding-top: 90px;
+  margin-bottom : 30px;
 }
 
 .container form .inputBox {
   margin-top: 5px;
-  width: '40%'
 }
 
 .container form .inputBox span {
