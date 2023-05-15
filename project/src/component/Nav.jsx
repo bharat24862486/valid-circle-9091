@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import MobNav2 from "./NavBar/MobNav2";
 import axios from "axios";
 import { Box, Button, Flex, Image } from "@chakra-ui/react";
+import { baseUrl } from "../Url";
 
 // import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
@@ -14,7 +15,7 @@ const Nav = ({ setHamburger, hamburger }) => {
 
   const [logout, setlogout] = useState(false)
 
-  let token = JSON.parse(localStorage.getItem("token"))
+  let token = JSON.parse(localStorage.getItem("Login"))
 
   useEffect(() => {
     if (token) {
@@ -50,7 +51,8 @@ const Nav = ({ setHamburger, hamburger }) => {
     console.log(Data, "in-fetch")
     console.log(Data[1])
 
-    axios.get(`https://shy-teal-caterpillar-toga.cyclic.app/${Data[0]}?q=${Data[1]}`).then((res) => setData(res.data))
+    // axios.get(`https://shy-teal-caterpillar-toga.cyclic.app/${Data[0]}?q=${Data[1]}`).then((res) => setData(res.data))
+    axios.get(`${baseUrl}/${Data[0]}?q=${Data[1]}`).then((res) => setData(res.data))
       .catch((err) => console.log(err))
     // console.log(ref1.current)
   }
@@ -98,8 +100,7 @@ const Nav = ({ setHamburger, hamburger }) => {
   }
 
   const logouts = () => {
-    localStorage.setItem("token", JSON.stringify(""))
-    localStorage.setItem("userId", JSON.stringify(""))
+    localStorage.setItem("Login", JSON.stringify(""))
     setlogout(false)
   }
 
