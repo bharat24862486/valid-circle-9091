@@ -1,21 +1,21 @@
 import React from 'react'
-import { SimpleGrid } from '@chakra-ui/react'
+import { Box, Image, SimpleGrid } from '@chakra-ui/react'
 
 
 const SinglePageGrid = ({datas}) => {
     console.log(datas)
   return (
-    <div>
-        <SimpleGrid columns={[1,2,2]} spacing={5}>
+    <Box>
+        <SimpleGrid columns={[1,2,2]} spacing={"1%"}>
             {datas.map((el)=>{
                 return (
-                    <img src={el} alt="" />
+                    <Image src={el} alt="" w={["100%","100%","100%"]}/>
                 )
             })}
         </SimpleGrid>
 
       
-    </div>
+    </Box>
   )
 }
 

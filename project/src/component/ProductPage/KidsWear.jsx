@@ -14,13 +14,14 @@ import {
   Stack,
   Spinner,
   Text,
+  Box
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 
 import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
 
 import { useEffect } from "react";
-import { useSearchParams, useLocation, Link } from "react-router-dom"; 
+import { useSearchParams, useLocation, Link, useNavigate } from "react-router-dom"; 
 import { getData } from "../../redux/ProductReducer/action";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "./Card";
@@ -36,6 +37,7 @@ const KidsWear = () => {
   const dispatch = useDispatch();
   const { productData } = useSelector((store) => store.ProductReducer);
   const [page, setPage] = useState(1)
+  const navigate = useNavigate()
 
   const [categoryList, setCategoryList] = useState([]);
   const [brandList, setBrandList] = useState([]);
@@ -324,7 +326,7 @@ const KidsWear = () => {
                 <SearchIcon />
               </HStack>
 
-              {categoryList.map((e, i) => (
+              {categoryList?.map((e, i) => (
                 // console.log(e)
                 // <Checkbox key={i} style={{ textTransform: "capitalize" }}> {e} </Checkbox>
                 <Checkbox
@@ -349,7 +351,7 @@ const KidsWear = () => {
                 <Text as={"b"}> BRAND </Text>
                 <SearchIcon />
               </HStack>
-              {brandList.slice(0, 8).map((e, i) => (
+              {brandList?.slice(0, 8).map((e, i) => (
                 <Checkbox
                   key={i}
                   name={"brand"}
@@ -371,7 +373,7 @@ const KidsWear = () => {
               <HStack direction={"row"} justifyContent={"space-between"}>
                 <Text as={"b"}> price </Text>
               </HStack>
-              {prices.map((e, i) => (
+              {prices?.map((e, i) => (
                 <Checkbox
                   key={i}
                   name={"price"}
@@ -394,7 +396,7 @@ const KidsWear = () => {
               <HStack direction={"row"} justifyContent={"space-between"}>
                 <Text as={"b"}> DISCOUNT RANGE </Text>
               </HStack>
-              {Discounts.map((e, i) => (
+              {Discounts?.map((e, i) => (
                 <Checkbox key={i} style={{ textTransform: "capitalize" }}>
                   {" "}
                   {e}{" "}
@@ -411,7 +413,7 @@ const KidsWear = () => {
               <HStack direction={"row"} justifyContent={"space-between"}>
                 <Text as={"b"}> DELIVERY TIME </Text>
               </HStack>
-              {deliveryTime.map((e, i) => (
+              {deliveryTime?.map((e, i) => (
                 <Checkbox key={i} style={{ textTransform: "capitalize" }}>
                   {" "}
                   {e}{" "}
@@ -490,7 +492,7 @@ const KidsWear = () => {
               <Stack borderLeft="1px solid  #e9e9ed"  borderTop="1px solid  #e9e9ed" p={"15px 15px"}>
                 <SimpleGrid columns={[1, 1, 2, 3, 4, 5]} m="auto" gap="40px">
                   {productData.length >= 0 &&
-                    productData.slice(((page-1)*15),(((page-1)*15)+15)).map((e) => <Link to={`/kidsproduct/${e.id}`}>< Card key={e.id} props={e} /></Link>)}
+                    productData?.slice(((page-1)*15),(((page-1)*15)+15)).map((e) => <Box onClick={()=>navigate(`/product/${e?.id}`,{state:"kids"})}>< Card key={e?.id} props={e} /></Box>)}
                 </SimpleGrid>
               </Stack>
                 <Center marginBottom="20px" > 

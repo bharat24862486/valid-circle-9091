@@ -1,36 +1,134 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { PhoneIcon, AddIcon, WarningIcon, SearchIcon } from "@chakra-ui/icons";
 import "../CSS/Nav.css";
 import MobileNav from "./NavBar/MobileNav";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import MobNav2 from "./NavBar/MobNav2";
+import axios from "axios";
+import { Box, Button, Flex, Image } from "@chakra-ui/react";
+import { baseUrl } from "../Url";
 
 // import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
-const Nav = () => {
-  function handleInput() {}
+const Nav = ({ setHamburger, hamburger }) => {
+  const navigate = useNavigate()
+
+  const [logout, setlogout] = useState(false)
+
+  let token = JSON.parse(localStorage.getItem("Login"))
+
+  useEffect(() => {
+    if (token) {
+      setlogout(true)
+    } else {
+      setlogout(false)
+    }
+  }, [logout])
+
+  let Display
+  let D2
+
+  if (logout) {
+    Display = "inline"
+    D2 = "none"
+  } else {
+    Display = "none"
+    D2 = "inline"
+  }
+
+  const [search, setSearch] = useState("")
+  const [DATA, setData] = useState([])
+  const [random, setRandom] = useState(true)
+
+  const [windowDimension, detectHW] = useState({
+    winWidth: window.innerWidth,
+  });
+
+
+  const fetchData = () => {
+    let Data = search
+    Data = Data.split(" ")
+    console.log(Data, "in-fetch")
+    console.log(Data[1])
+
+    // axios.get(`https://shy-teal-caterpillar-toga.cyclic.app/${Data[0]}?q=${Data[1]}`).then((res) => setData(res.data))
+    axios.get(`${baseUrl}/${Data[0]}?q=${Data[1]}`).then((res) => setData(res.data))
+      .catch((err) => console.log(err))
+    // console.log(ref1.current)
+  }
+
+
+  useEffect(() => {
+    if (search != "") {
+      fetchData()
+    }
+
+    // let time = setTimeout(() => {
+
+
+    // }, 1000);
+
+  }, [search])
+
+  const handleNavigate1 = (id) => {
+    let data = search
+    data = data.split(" ")[0]
+    navigate(`/product/${id}`, { state: data })
+
+  }
+
+  // const ref1 = useRef()
+  const detectSize = () => {
+    detectHW({
+      winWidth: window.innerWidth,
+    });
+  };
+
+
+  console.log(DATA, "line 60")
+
+  useEffect(() => {
+    window.addEventListener("resize", detectSize);
+
+    return () => {
+      window.removeEventListener("resize", detectSize);
+    };
+  }, [windowDimension])
+
+  function handleInput() {
+
+  }
+
+  const logouts = () => {
+    localStorage.setItem("Login", JSON.stringify(""))
+    setlogout(false)
+  }
+
+  console.log(windowDimension.winWidth);
+
   return (
     // <div style={{border:"1px solid black", height:'80px'}}>Nav</div>
-    <div style={{position:'sticky',top:0, border:'1px solid red',backgroundColor:'white', marginBottom:'100px',zIndex:'1000'}}>
+    <div style={{ position: 'sticky', top: "0", backgroundColor: 'white', marginTop: "0px", boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px", zIndex: 100 }}>
       {/* style={{backgroundColor:'white', position:"fixed", top:0, left:0}} */}
-      {window.screen.width > 1024 ? (
-        <div className="NavMain" style={{backgroundColor:'white', marginTop:0}} >
+      {windowDimension.winWidth > 1024 ? (
+        <div className="NavMain" style={{ backgroundColor: 'white', marginTop: 0 }} >
           <Link to='/'>
-          <div >
-            <img
-              src="https://i.ibb.co/kG5RxHg/StyleHub.png"
-              alt=""
-              style={{ width: "100px" }}
-            />
-          </div>
+            <div >
+              <img
+                src="https://i.ibb.co/kG5RxHg/StyleHub.png"
+                alt=""
+                style={{ width: "100px" }}
+              />
+            </div>
           </Link>
           <div className="firstNavMain">
             <nav id="nav">
               <ul>
                 <li>
-                  <Link to={'/mens'}> 
-                  <span>
-                  Men
-                  </span>
+                  <Link to={'/mens'}>
+                    <span>
+                      Men
+                    </span>
                   </Link>
                   <div class="subMenu">
                     <div id="mobiles" class="submenuList">
@@ -127,10 +225,10 @@ const Nav = () => {
                   </div>
                 </li>
                 <li>
-                <Link to={'/womens'}> 
-                  <span>
-                  Women
-                  </span>
+                  <Link to={'/womens'}>
+                    <span>
+                      Women
+                    </span>
                   </Link>
                   <div class="subMenu">
                     <div id="furniture" class="submenuList">
@@ -223,10 +321,10 @@ const Nav = () => {
                   </div>
                 </li>
                 <li>
-                <Link to={'/kids'}> 
-                  <span>
-                  Kids
-                  </span>
+                  <Link to={'/kids'}>
+                    <span>
+                      Kids
+                    </span>
                   </Link>
                   <div class="subMenu">
                     <div id="electronics" class="submenuList">
@@ -322,7 +420,7 @@ const Nav = () => {
                     </div>
                   </div>
                 </li>
-                <li>
+                <Link to={"/womens"}><li>
                   Home & Living
                   <div class="subMenu">
                     <div id="home_appliances" class="submenuList">
@@ -417,7 +515,8 @@ const Nav = () => {
                       </div>
                     </div>
                   </div>
-                </li>
+                </li></Link>
+                <Link  to={"/womens"}>
                 <li>
                   Beauty
                   <div class="subMenu">
@@ -514,6 +613,7 @@ const Nav = () => {
                     </div>
                   </div>
                 </li>
+                </Link>
                 <li>
                   Studio
                   <div class="subMenu">
@@ -615,43 +715,52 @@ const Nav = () => {
           </div>
           <div className="secondNavMain">
             <div>
-              <input type="text" onChange={handleInput} />
-              <span>
+              <input type="text" onChange={(e) => setSearch(e.target.value)} placeholder="Search" />
+              <span onClick={handleInput}>
                 <SearchIcon />
               </span>
+              {search !== "" && DATA?.length > 0 ? <> <Box   >
+
+                <Box textAlign={"left"} overflow={'scroll'} width={"54vh"} maxH={'71vh'} zIndex={'100000'} bg='white' pos='absolute' borderRadius={"14px"} color='black' p='2' pt={"10"}>
+                  {
+
+                    DATA?.map((el) => (
+                      <Flex alignItems={"center"} gap={"20px"} padding={"5px"} cursor={"pointer"}>
+                        <Image w={"30%"} src={el?.images?.image1} />
+                        <h5 onClick={() => handleNavigate1(el?.id)}>{el?.title}</h5>
+                      </Flex>
+                    ))
+                  }
+                </Box></Box></> : " "}
             </div>
           </div>
           <div className="thirdNavMain">
-            <div>
-              <img
-                src="https://img.icons8.com/ios/256/gender-neutral-user--v1.png"
-                style={{ width: "25px" }}
-                alt=""
-              />
-              <p>Profile</p>
-            </div>
+
+            <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signup")}>Login</Button>
+            <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={Display} onClick={logouts}>Logout</Button>
             <div>
               <img
                 src="https://img.icons8.com/ios-glyphs/256/hearts.png"
                 style={{ width: "25px" }}
                 alt=""
               />
-              <p>Wishlist</p>
+
             </div>
-            <div>
+            <Link to={'/cart'}> <div>
               <img
                 src="https://img.icons8.com/windows/256/shopping-bag-full.png"
                 style={{ width: "25px" }}
                 alt=""
               />
 
-              <Link to={'/cart'}> <p>Bag</p></Link>
-             
-            </div>
+
+
+            </div></Link>
+
           </div>
         </div>
       ) : (
-        <MobileNav />
+        <MobNav2 setHamburger={setHamburger} hamburger={hamburger} />
       )}
     </div>
   );

@@ -48,7 +48,7 @@ const SingleProductSecond = ({ addToCart, title, brand, rating, count, price, di
           </Text>
         </HStack>
       </Box>
-      <hr />
+      {/* <hr /> */}
       <Box>
         <Text fontSize={"18px"} as={"b"}>
           {price}{" "}
@@ -66,34 +66,34 @@ const SingleProductSecond = ({ addToCart, title, brand, rating, count, price, di
         })}
       </Box>
 
-      <Box mt={"5%"} mb={"5%"}>
-        <Button color={"white"} background={"pink.500"} pl={"20"} pr={"20"} pt={"7"} pb={"7"} onClick={()=>addToCart()} >Add to Bag</Button><span> </span>
+      <Box mt={"5%"} mb={"5%"} display={"flex"} flexDirection={["column","row"]}>
+        <Button color={"white"} background={"pink.500"}  pl={"20"}  pr={"20"} pt={"7"} pb={"7"} onClick={()=>addToCart()} >Add to Bag</Button><span> </span>
         <Button background={"white"} pl={"20"} pr={"20"} pt={"7"} pb={"7"} border={"1px solid black"}>Wishlist</Button>
       </Box>
-      <hr />
+      {/* <hr /> */}
 
-      <Text fontWeight={"600"} fontSize={"16px"} mt={"2%"} mb={"2%"}>Delivery Option</Text>
+      <Text fontWeight={"600"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"2%"}>Delivery Option</Text>
       <Input width={"40%"} />
 
       <Box display={"flex"} alignItems={"center"} mt={"4%"}>
         <CiDeliveryTruck size={"25px"} />
-        <Text fontWeight={"600"} fontSize={"16px"} ml={"2%"} > Get it by Sat, Apr 08 </Text>
+        <Text fontWeight={"600"} fontSize={["1.1rem","1.7rem","1.2rem"]} ml={"2%"} > Get it by Sat, Apr 08 </Text>
       </Box>
 
       <Box display={"flex"} alignItems={"center"} mt={"2%"}>
         <AiOutlineMobile size={"25px"} />
-        <Text fontWeight={"600"} fontSize={"16px"} ml={"2%"} > Pay on delivery available </Text>
+        <Text fontWeight={"600"} fontSize={["1.1rem","1.7rem","1.2rem"]} ml={"2%"} > Pay on delivery available </Text>
       </Box>
 
       <Box display={"flex"} alignItems={"center"} mt={"2%"}>
         <TbTruckReturn size={"25px"} />
-        <Text fontWeight={"600"} fontSize={"16px"} ml={"2%"} >Easy 14 days return & exchange available </Text>
+        <Text fontWeight={"600"} fontSize={["1.1rem","1.7rem","1.2rem"]} ml={"2%"} >Easy 14 days return & exchange available </Text>
       </Box>
 
-      <Text fontWeight={"400"} fontSize={"14px"} mt={"2%"} mb={"2%"}>100% Original Products</Text>
+      <Text fontWeight={"400"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"2%"}>100% Original Products</Text>
       <Flex>
-        <Text fontWeight={"600"} fontSize={"18px"} mt={"2%"} mb={"2%"}>Best Price:</Text>
-        <Text fontWeight={"600"} fontSize={"18px"} mt={"2%"} mb={"2%"} color={"orange"}>{price}</Text>
+        <Text fontWeight={"600"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"2%"}>Best Price:</Text>
+        <Text fontWeight={"600"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"2%"} color={"orange"}>{price}</Text>
       </Flex>
       <Box>
         <UnorderedList>
@@ -103,20 +103,20 @@ const SingleProductSecond = ({ addToCart, title, brand, rating, count, price, di
           
         </UnorderedList>
       </Box>
-      <Text fontWeight={"600"} fontSize={"16px"} mt={"2%"} mb={"2%"} color={"pink.500"}>View Eligible Products</Text>
-      <Text fontWeight={"650"} fontSize={"16px"} mt={"2%"} mb={"2%"} color={"black"}>EMI options available</Text>
+      <Text fontWeight={"600"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"2%"} color={"pink.500"}>View Eligible Products</Text>
+      <Text fontWeight={"650"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"2%"} color={"black"}>EMI options available</Text>
 
       <Box>
       <UnorderedList>
           <ListItem>EMI starting from Rs.26/month</ListItem>
           </UnorderedList>
       </Box>
-      <Text fontWeight={"600"} fontSize={"16px"} mt={"2%"} mb={"2%"} color={"pink.500"}>View plans</Text>
-      <Text fontWeight={"650"} fontSize={"18px"} mt={"2%"} mb={"1%"} color={"black"}>Product Details</Text>
-      <Text fontWeight={"500"} fontSize={"15px"} mt={"1%"} mb={"2%"} color={"black"}>{title}</Text>
+      <Text fontWeight={"600"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"2%"} color={"pink.500"}>View plans</Text>
+      <Text fontWeight={"650"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"1%"} color={"black"}>Product Details</Text>
+      <Text fontWeight={"500"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"1%"} mb={"2%"} color={"black"}>{title}</Text>
 
 
-      <hr style={{marginTop:"5%"}}/>
+      {/* <hr style={{marginTop:"5%"}}/> */}
 
 
 
