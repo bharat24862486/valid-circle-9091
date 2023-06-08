@@ -9,7 +9,7 @@ import Nav from '../Nav'
 import Footer from '../footer/Footer'
 
 
-const url = `https://shy-teal-caterpillar-toga.cyclic.app`
+const url = `https://glorious-robe-calf.cyclic.app`
 
 const SingleProduct = () => {
 
@@ -41,7 +41,7 @@ const SingleProduct = () => {
 
     })
     function singleGet() {
-        return axios.get(`https://shy-teal-caterpillar-toga.cyclic.app/kids/${id}`)
+        return axios.get(`https://glorious-robe-calf.cyclic.app/kids/${id}`)
     }
     useEffect(() => {
         singleGet()

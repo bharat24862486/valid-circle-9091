@@ -7,7 +7,7 @@ export const AddtoCart = (payload) => {
 
 export const getCart =(dispatch) => {
     axios
-    .get("https://shy-teal-caterpillar-toga.cyclic.app/cart")
+    .get("https://glorious-robe-calf.cyclic.app/cart")
     .then((res)=>{
         dispatch(AddtoCart(res.data))    
     })
@@ -16,7 +16,7 @@ export const getCart =(dispatch) => {
 
 export const Delete=(id)=>(dispatch) =>{
 
-    return  axios.delete(`https://shy-teal-caterpillar-toga.cyclic.app/cart/${id}`) 
+    return  axios.delete(`https://glorious-robe-calf.cyclic.app/cart/${id}`) 
     // getCart()
 }
 

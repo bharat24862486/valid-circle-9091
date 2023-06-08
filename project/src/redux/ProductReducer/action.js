@@ -6,7 +6,7 @@ import {
 } from "./actionTypes";
 
 // const url = `http://localhost:8080/kids`
-const url = `https://shy-teal-caterpillar-toga.cyclic.app`
+const url = `https://glorious-robe-calf.cyclic.app`
 
 export const getData = (params,query) => {
  
