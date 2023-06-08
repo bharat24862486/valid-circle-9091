@@ -9,6 +9,21 @@ export const AddtoCart = (payload) => {
 } 
 
 
+export const getCart =(dispatch) => {
+    axios
+    .get("https://glorious-robe-calf.cyclic.app/cart")
+    .then((res)=>{
+        dispatch(AddtoCart(res.data))    
+    })
+    .catch((err)=>console.log(err))
+}
+
+
+
+
+    return  axios.delete(`https://glorious-robe-calf.cyclic.app/cart/${id}`) 
+    // getCart()
+}
 
 
 // export const getCart =(dispatch) => {

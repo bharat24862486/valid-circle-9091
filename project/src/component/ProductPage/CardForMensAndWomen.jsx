@@ -69,7 +69,7 @@ const Card = ({ props }) => {
               bgColor={"white"}
               boxShadow={"0 0 3px rgba(0,0,0,0.2)"}
             >
-              <Text fontWeight={"600"} fontSize={"0.7rem"} /* as="b" */>
+             <Text marginBottom={'0'} fontWeight={"600"} fontSize={"0.7rem"} /* as="b" */>
                 {rating}
               </Text>
               <FaStar size={"12"} color="teal" />

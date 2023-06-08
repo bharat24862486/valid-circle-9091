@@ -1,82 +1,73 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import SinglePageGrid from "./SinglePageGrid";
-import "../../CSS/SingleProduct.css";
-import SingleProductSecond from "./SingleProductSecond";
-import {
-  Box,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  Stack,
-  useToast,
-} from "@chakra-ui/react";
-import { useLocation, useParams } from "react-router-dom";
-import Nav from "../Nav";
-import Footer from "../footer/Footer";
-import MobileNav from "../NavBar/MobileNav";
-import { baseUrl } from "../../Url";
+ 
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import SinglePageGrid from './SinglePageGrid'
+import "../../CSS/SingleProduct.css"
+import SingleProductSecond from './SingleProductSecond'
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Stack,useToast } from '@chakra-ui/react'
+import { useParams } from 'react-router-dom'
+import Nav from '../Nav'
+import Footer from '../footer/Footer'
 
-// const url = `https://shy-teal-caterpillar-toga.cyclic.app`
-const url = `https://glorious-robe-calf.cyclic.app`;
+
+const url = `https://glorious-robe-calf.cyclic.app`
 
 const SingleProduct = () => {
-  const { state } = useLocation();
 
-  console.log(state, "single product 18");
+ const {id} = useParams()
+ const toast = useToast()
 
-  const { id } = useParams();
-  console.log(id, "id");
-  const toast = useToast();
+//  console.log('search',id)
 
-  //  console.log('search',id)
+    const [data, setData] = useState({
+        rating: "",
+        count: "",
+        images: {
+            image1: "",
+            image2: "",
+            image3: "",
+            image4: ""
+        },
+        image: "",
+        brand: "",
+        title: "",
+        sizes: [
 
-  const [data, setData] = useState({
-    rating: "",
-    count: "",
-    images: {
-      image1: "",
-      image2: "",
-      image3: "",
-      image4: "",
-    },
-    image: "",
-    brand: "",
-    title: "",
-    sizes: [],
-    price: "",
-    productDiscountPercentage: "",
-    quantity: 0,
-    gender: "",
-    category: "",
-  });
+        ],
+        price: "",
+        productDiscountPercentage: "",
+        quantity: 0,
+        gender: "",
+        category: ""
 
+    })
+    function singleGet() {
+        return axios.get(`https://glorious-robe-calf.cyclic.app/kids/${id}`)
+    }
+    useEffect(() => {
+        singleGet()
+            .then((res) => setData(res.data))
+    }, [])
+    // data && console.log(data.images.image1)
+
+    
+
+    const AddToCartToast = (title) => {
+  
+      toast({
+        title:title,
+        // description: des, 
+        status: 'success',
+        position: 'top',
+        duration: 3000,
+        isClosable: true,
+      })
+    }
+
+
+
+const addToCart = () => {
  
-   
-  function singleGet() {
-    return axios.get(`${baseUrl}/${state}/${id}`);
-  }
-  useEffect(() => {
-    singleGet().then((res) => { 
-      setData(res.data)
-        }
-    );
-   
-  }, [id]);
-  data && console.log(data.images.image1);
-
-  const AddToCartToast = (title) => {
-    toast({
-      title: title,
-      // description: des,
-      status: "success",
-      position: "top",
-      duration: 3000,
-      isClosable: true,
-    });
-  };
-
-  const addToCart = () => {
     // alert('working addtocart')
     // "Added to Cart"
     AddToCartToast("Added to Cart");
