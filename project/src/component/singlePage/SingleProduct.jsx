@@ -1,4 +1,3 @@
- 
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import SinglePageGrid from './SinglePageGrid'
@@ -8,17 +7,11 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Stack,useToast } from '@cha
 import { useParams } from 'react-router-dom'
 import Nav from '../Nav'
 import Footer from '../footer/Footer'
-
-
 const url = `https://glorious-robe-calf.cyclic.app`
-
 const SingleProduct = () => {
-
  const {id} = useParams()
  const toast = useToast()
-
 //  console.log('search',id)
-
     const [data, setData] = useState({
         rating: "",
         count: "",
@@ -32,14 +25,12 @@ const SingleProduct = () => {
         brand: "",
         title: "",
         sizes: [
-
         ],
         price: "",
         productDiscountPercentage: "",
         quantity: 0,
         gender: "",
         category: ""
-
     })
     function singleGet() {
         return axios.get(`https://glorious-robe-calf.cyclic.app/kids/${id}`)
@@ -49,9 +40,7 @@ const SingleProduct = () => {
             .then((res) => setData(res.data))
     }, [])
     // data && console.log(data.images.image1)
-
     
-
     const AddToCartToast = (title) => {
   
       toast({
@@ -65,92 +54,56 @@ const SingleProduct = () => {
     }
 
 
-
 const addToCart = () => {
- 
     // alert('working addtocart')
     // "Added to Cart"
-    AddToCartToast("Added to Cart");
-    axios
-      .post(`${url}/cart`, data)
-      .then((res) => res)
-      .catch((err) => console.log(err));
-  };
+    AddToCartToast("Added to Cart")
+    axios.post(`${url}/cart`, data).then((res)=>res).catch((err)=>console.log(err))
+}
 
-  const [hamburger, setHamburger] = useState(false);
 
-console.log({data});
 
-  return (
-    <Box>
-      {hamburger ? (
-        <MobileNav setHamburger={setHamburger} hamburger={hamburger} />
-      ) : (
-        <Box>
-          <Box>
-            <Nav setHamburger={setHamburger} hamburger={hamburger} />
+    return (
+        <div>
+            <Nav />
             <Stack
-              spacing={2}
-              align="stretch"
-              // border={"1px solid black"}
-              marginBottom="20px"
+                spacing={2}
+                align="stretch"
+                // border={"1px solid black"}
+                marginBottom="20px"
             >
-              <Breadcrumb className={"breadcrummb"}>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="#">Home</BreadcrumbLink>
-                </BreadcrumbItem>
+                <Breadcrumb className={"breadcrummb"}>
+                    <BreadcrumbItem>
+                        <BreadcrumbLink href="#">Home</BreadcrumbLink>
+                    </BreadcrumbItem>
 
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="#">Clothing</BreadcrumbLink>
-                </BreadcrumbItem>
+                    <BreadcrumbItem>
+                        <BreadcrumbLink href="#">Clothing</BreadcrumbLink>
+                    </BreadcrumbItem>
 
-                <BreadcrumbItem isCurrentPage>
-                  <BreadcrumbLink as={"b"} fontSize={"13px"} cursor="text">
-                    {data?.brand}
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-              </Breadcrumb>
+                    <BreadcrumbItem isCurrentPage>
+                        <BreadcrumbLink as={"b"} fontSize={"13px"} cursor="text">
+                            {data?.brand}
+                        </BreadcrumbLink>
+                    </BreadcrumbItem>
+                </Breadcrumb>
             </Stack>
-            <div className="SingleFlex">
-              <div>
-                {/* {console.log(data)} */}
-                {data?.images ? (
-                  <SinglePageGrid
-                    datas={[
-                      data.images.image1,
-                      data.images.image2,
-                      data.images.image3,
-                    ]}
-                  />
-                ) : (
-                  ""
-                )}
-              </div>
-              <div>
-                {data ? (
-                  <SingleProductSecond
-                    addToCart={addToCart}
-                    title={data.title}
-                    brand={data.brand}
-                    rating={data.rating}
-                    count={data.count}
-                    price={data.price}
-                    discount={data.productDiscountPercentage}
-                    size={data.sizes}
-                  />
-                ) : (
-                  ""
-                )}
-                {/* title,brand,rating,count,price,discount,size,ageGroup */}
-              </div>
+            <div className='SingleFlex'>
+
+                <div>
+                    {console.log(data)}
+                    {data?.images ? <SinglePageGrid datas={[data.images.image1, data.images.image2, data.images.image3]} /> : ''}
+                    {/* <SinglePageGrid data={[data?.images?.image1,data?.images?.image2,data?.images?.image3]}/> */}
+                </div>
+                <div>
+                    {data ? <SingleProductSecond addToCart={addToCart} title={data.title} brand={data.brand} rating={data.rating} count={data.count} price={data.price} discount={data.productDiscountPercentage} size={data.sizes} /> : ''}
+                    {/* title,brand,rating,count,price,discount,size,ageGroup */}
+                </div>
             </div>
             <Footer />
-          </Box>
-        </Box>
-      )}
-    </Box>
-  );
-};
+        </div>
 
-export default SingleProduct;
+    )
+}
 
+export default SingleProduct

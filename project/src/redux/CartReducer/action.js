@@ -21,9 +21,9 @@ export const getCart =(dispatch) => {
 
 
 
-    return  axios.delete(`https://glorious-robe-calf.cyclic.app/cart/${id}`) 
+    // return  axios.delete(`https://glorious-robe-calf.cyclic.app/cart/${id}`) 
     // getCart()
-}
+// }
 
 
 // export const getCart =(dispatch) => {

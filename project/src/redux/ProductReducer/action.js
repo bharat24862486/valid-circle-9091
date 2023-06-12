@@ -8,7 +8,7 @@ import { baseUrl } from "../../Url";
 
 // const url = `http://localhost:8080/kids`
 
-const url = `https://glorious-robe-calf.cyclic.app`
+// const url = `https://glorious-robe-calf.cyclic.app`
 
 export const getData = (params,query) => {
  
