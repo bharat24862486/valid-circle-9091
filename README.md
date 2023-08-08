@@ -1,6 +1,6 @@
 
 # Myntra.com-Clone
-## [Deployed URL] (https://stylehub-phi.vercel.app)
+## [Deployed URL] (https://valid-circle-9091-one.vercel.app/)
 ##  StyleHub
 -Ecommerce Website
 StyleHub is a Casual Wear and Lifestyle Brand and E-commerce platform. 
